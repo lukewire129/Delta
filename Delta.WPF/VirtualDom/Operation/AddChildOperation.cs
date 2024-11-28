@@ -1,11 +1,12 @@
-﻿namespace Delta
+﻿using Delta;
+namespace Delta.WPF
 {
     public class AddChildOperation : DiffOperation
     {
         public string TargetId { get; }
-        public VirtualNode ChildNode { get; }
+        public VisualNode ChildNode { get; }
 
-        public AddChildOperation(string targetId, VirtualNode childNode)
+        public AddChildOperation(string targetId, VisualNode childNode)
         {
             TargetId = targetId;
             ChildNode = childNode;

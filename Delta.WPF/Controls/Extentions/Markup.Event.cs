@@ -4,7 +4,7 @@ namespace Delta.WPF
 {
     public static partial class Markup
     {
-        public static VirtualNode OnClick(this VirtualNode node, RoutedEventHandler handler)
+        public static VisualNode OnClick(this VisualNode node, RoutedEventHandler handler)
         {
             return node.AddEvent ("Click", handler);
         }

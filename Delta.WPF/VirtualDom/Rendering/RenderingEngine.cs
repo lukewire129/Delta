@@ -55,7 +55,7 @@ namespace Delta.WPF
                     panel.Children.Insert (index, newElement);
                 }
             }
-            else if (LogicalTreeHelper.GetParent (targetControl) is ContentControl contentControl)
+            else if (LogicalTreeHelper.GetParent (targetControl) is System.Windows.Controls.ContentControl contentControl)
             {
                 if (contentControl.Content == targetControl)
                 {
@@ -91,31 +91,31 @@ namespace Delta.WPF
             }
             else if (operation.PropertyName == "RowDefinitions")
             {
-                ((Grid)targetControl).RowDefinitions.Clear ();
+                ((System.Windows.Controls.Grid)targetControl).RowDefinitions.Clear ();
 
                 foreach(var rowdefinition in (List<RowDefinition>)operation.NewValue)
                 {
-                    ((Grid)targetControl).RowDefinitions.Add (rowdefinition);
+                    ((System.Windows.Controls.Grid)targetControl).RowDefinitions.Add (rowdefinition);
                 }
                 
             }
             else if(operation.PropertyName == "ColumnDefinitions")
             {
-                ((Grid)targetControl).ColumnDefinitions.Clear ();
+                ((System.Windows.Controls.Grid)targetControl).ColumnDefinitions.Clear ();
                 foreach (var columndefinition in (List<ColumnDefinition>)operation.NewValue)
                 {
-                    ((Grid)targetControl).ColumnDefinitions.Add (columndefinition);
+                    ((System.Windows.Controls.Grid)targetControl).ColumnDefinitions.Add (columndefinition);
                 }
             }
             else
             {
                 if (operation.PropertyName == "Grid.Row")
                 {
-                    Grid.SetRow (targetControl, (int)operation.NewValue);
+                    System.Windows.Controls.Grid.SetRow (targetControl, (int)operation.NewValue);
                 }
                 else if (operation.PropertyName == "Grid.Column")
                 {
-                    Grid.SetColumn (targetControl, (int)operation.NewValue);
+                    System.Windows.Controls.Grid.SetColumn (targetControl, (int)operation.NewValue);
                 }
                 else
                 {
@@ -188,7 +188,7 @@ namespace Delta.WPF
 
       
 
-        public static FrameworkElement CreateElement(VirtualNode node)
+        public static FrameworkElement CreateElement(VisualNode node)
         {
             var elementType = Type.GetType ($"System.Windows.Controls.{node.Type}, PresentationFramework");
             if (elementType == null)
@@ -207,11 +207,11 @@ namespace Delta.WPF
                 }
                 else if (property.Key == "Grid.Row")
                 {
-                    Grid.SetRow (element, (int)property.Value);
+                    System.Windows.Controls.Grid.SetRow (element, (int)property.Value);
                 }
                 else if (property.Key == "Grid.Column")
                 {
-                    Grid.SetColumn (element, (int)property.Value);
+                    System.Windows.Controls.Grid.SetColumn (element, (int)property.Value);
                 }
             }
 

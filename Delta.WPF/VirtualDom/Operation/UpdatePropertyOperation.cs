@@ -1,4 +1,5 @@
-﻿namespace Delta
+﻿using Delta;
+namespace Delta.WPF
 {
     public class UpdatePropertyOperation : DiffOperation
     {

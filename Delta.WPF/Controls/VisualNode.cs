@@ -1,40 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Delta
+namespace Delta.WPF
 {
-    public class VirtualNode
+    public partial class VisualNode
     {
         public string Id { get; } = UniqueIdGenerator.GenerateId (); // 고유 ID 생성
         public string Type { get; set; }
         public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object> ();
-        public List<VirtualNode> Children { get; set; } = new List<VirtualNode>();
+        public List<VisualNode> Children { get; set; } = new List<VisualNode>();
         public Dictionary<string, Delegate> Events { get; set; } = new Dictionary<string, Delegate> (); // 이벤트 저장
 
         // Fluent API로 속성 설정
-        public VirtualNode SetProperty(string name, object value)
+        public VisualNode SetProperty(string name, object value)
         {
             Properties[name] = value;
             return this;
         }
 
         // 자식 노드 추가
-        public VirtualNode AddChild(VirtualNode child)
+        public VisualNode AddChild(VisualNode child)
         {
             Children.Add (child);
             return this;
         }
-        public VirtualNode()
+        public VisualNode()
         {
             this.Id = UniqueIdGenerator.GenerateId ();
         }
+
         // 정적 팩토리 메서드로 노드 생성
-        public static VirtualNode Create(string type)
+        public static VisualNode Create(string type)
         {
-            return new VirtualNode { Type = type };
+            return new VisualNode { Type = type };
         }
 
-        public VirtualNode AddEvent(string eventName, Delegate handler)
+        public VisualNode(string nodeType)
+        {
+            Type = nodeType;
+            Console.WriteLine ($"VisualNode created with NodeType: {Type}");
+        }
+
+        public VisualNode AddEvent(string eventName, Delegate handler)
         {
             Events[eventName] = handler;
             return this;
@@ -42,7 +49,7 @@ namespace Delta
 
         public override bool Equals(object obj)
         {
-            if (!(obj is VirtualNode other))
+            if (!(obj is VisualNode other))
                 return false;
 
             return Type == other.Type;
@@ -58,7 +65,7 @@ namespace Delta
             }
             return hash;
         }
-        private static bool ChildrenEqual(List<VirtualNode> children1, List<VirtualNode> children2)
+        private static bool ChildrenEqual(List<VisualNode> children1, List<VisualNode> children2)
         {
             if (children1.Count != children2.Count)
                 return false;

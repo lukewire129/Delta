@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 
 namespace Delta.WPF
 {
     public static class VirtualDomConverter
     {
-        public static VirtualNode ToVirtualNode(FrameworkElement element)
+        public static VisualNode ToVisualNode(FrameworkElement element)
         {
-            var node = new VirtualNode
+            var node = new VisualNode
             {
                 Type = element.GetType ().Name,
                 Properties = element.GetType ()
@@ -20,7 +16,7 @@ namespace Delta.WPF
                                     .ToDictionary (p => p.Name, p => p.GetValue (element)),
                 Children = LogicalTreeHelper.GetChildren (element)
                                             .OfType<FrameworkElement> ()
-                                            .Select (ToVirtualNode)
+                                            .Select (ToVisualNode)
                                             .ToList ()
             };
 

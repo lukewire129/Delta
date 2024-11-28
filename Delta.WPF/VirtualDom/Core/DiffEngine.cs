@@ -7,7 +7,7 @@ namespace Delta.WPF
 {
     public static class DiffEngine
     {
-        public static List<DiffOperation> Diff(VirtualNode oldNode, VirtualNode newNode)
+        public static List<DiffOperation> Diff(VisualNode oldNode, VisualNode newNode)
         {
             var operations = new List<DiffOperation> ();
 
@@ -108,24 +108,6 @@ namespace Delta.WPF
             for (int i = 0; i < collection1.Count; i++)
             {
                 if (!comparer (collection1[i], collection2[i]))
-                    return false;
-            }
-
-            return true;
-        }
-
-        private static bool CollectionsEqual(IEnumerable<object> collection1, IEnumerable<object> collection2)
-        {
-            // 컬렉션의 요소를 순서대로 비교
-            var list1 = collection1.ToList ();
-            var list2 = collection2.ToList ();
-
-            if (list1.Count != list2.Count)
-                return false;
-
-            for (int i = 0; i < list1.Count; i++)
-            {
-                if (!Equals (list1[i], list2[i]))
                     return false;
             }
 
