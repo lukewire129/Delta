@@ -1,0 +1,135 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Controls;
+
+namespace Delta.WPF
+{
+    public static class DiffEngine
+    {
+        public static List<DiffOperation> Diff(VirtualNode oldNode, VirtualNode newNode)
+        {
+            var operations = new List<DiffOperation> ();
+
+            // 타입이나 구조가 다른 경우, ReplaceNode로 처리
+            if (!oldNode.Equals (newNode))
+            {
+                operations.Add (new ReplaceNodeOperation (oldNode.Id, newNode));
+                return operations;
+            }
+
+            foreach (var property in newNode.Properties)
+            {
+                if (!oldNode.Properties.TryGetValue (property.Key, out var oldValue))
+                {
+                    // 기존 속성이 없으면 UpdatePropertyOperation 추가
+                    operations.Add (new UpdatePropertyOperation (oldNode.Id, property.Key, property.Value));
+                    continue;
+                }
+
+                // RowDefinitions 또는 ColumnDefinitions 비교
+                if (property.Value is List<RowDefinition> newRowDefs && oldValue is List<RowDefinition> oldRowDefs)
+                {
+                    if (!CollectionsEqual (newRowDefs, oldRowDefs, AreRowDefinitionsEqual))
+                    {
+                        operations.Add (new UpdatePropertyOperation (oldNode.Id, property.Key, property.Value));
+                    }
+                }
+                else if (property.Value is List<ColumnDefinition> newColDefs && oldValue is List<ColumnDefinition> oldColDefs)
+                {
+                    if (!CollectionsEqual (newColDefs, oldColDefs, AreColumnDefinitionsEqual))
+                    {
+                        operations.Add (new UpdatePropertyOperation (oldNode.Id, property.Key, property.Value));
+                    }
+                }
+                else if (!Equals (oldValue, property.Value))
+                {
+                    // 일반 값 비교
+                    operations.Add (new UpdatePropertyOperation (oldNode.Id, property.Key, property.Value));
+                }
+            }
+
+            // 삭제된 속성 처리
+            foreach (var property in oldNode.Properties)
+            {
+                if (!newNode.Properties.ContainsKey (property.Key))
+                {
+                    operations.Add (new RemovePropertyOperation (oldNode.Id, property.Key));
+                }
+            }
+
+            // 자식 노드 비교
+            var unmatchedOldChildren = oldNode.Children.ToList ();
+            var unmatchedNewChildren = newNode.Children.ToList ();
+
+            foreach (var newChild in newNode.Children)
+            {
+                var matchingOldChild = unmatchedOldChildren
+                    .FirstOrDefault (oldChild => oldChild.Equals (newChild));
+
+                if (matchingOldChild != null)
+                {
+                    operations.AddRange (Diff (matchingOldChild, newChild));
+                    unmatchedOldChildren.Remove (matchingOldChild);
+                    unmatchedNewChildren.Remove (newChild);
+                }
+            }
+
+            foreach (var unmatchedOldChild in unmatchedOldChildren)
+            {
+                operations.Add (new RemoveChildOperation (unmatchedOldChild.Id));
+            }
+
+            foreach (var unmatchedNewChild in unmatchedNewChildren)
+            {
+                operations.Add (new AddChildOperation (oldNode.Id, unmatchedNewChild));
+            }
+
+            return operations;
+        }
+
+        private static bool AreRowDefinitionsEqual(RowDefinition row1, RowDefinition row2)
+        {
+            return Equals (row1.Height, row2.Height) &&
+                   Equals (row1.MinHeight, row2.MinHeight) &&
+                   Equals (row1.MaxHeight, row2.MaxHeight);
+        }
+        private static bool AreColumnDefinitionsEqual(ColumnDefinition col1, ColumnDefinition col2)
+        {
+            return Equals (col1.Width, col2.Width) &&
+                   Equals (col1.MinWidth, col2.MinWidth) &&
+                   Equals (col1.MaxWidth, col2.MaxWidth);
+        }
+        private static bool CollectionsEqual<T>(List<T> collection1, List<T> collection2, Func<T, T, bool> comparer)
+        {
+            if (collection1.Count != collection2.Count)
+                return false;
+
+            for (int i = 0; i < collection1.Count; i++)
+            {
+                if (!comparer (collection1[i], collection2[i]))
+                    return false;
+            }
+
+            return true;
+        }
+
+        private static bool CollectionsEqual(IEnumerable<object> collection1, IEnumerable<object> collection2)
+        {
+            // 컬렉션의 요소를 순서대로 비교
+            var list1 = collection1.ToList ();
+            var list2 = collection2.ToList ();
+
+            if (list1.Count != list2.Count)
+                return false;
+
+            for (int i = 0; i < list1.Count; i++)
+            {
+                if (!Equals (list1[i], list2[i]))
+                    return false;
+            }
+
+            return true;
+        }
+    }
+}
