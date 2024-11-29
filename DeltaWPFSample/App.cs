@@ -1,13 +1,16 @@
 ﻿using Delta.WPF;
-using DeltaWPFSample.Components.MainLayout;
+using System.Windows;
 
 namespace DeltaWPFSample
 {
-    public class App : DeltaApplication
+    public class App : Application
     {
-        public App()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow = new MainWindow ();
+            base.OnStartup (e);
+
+            var mainWindow = new MainWindow ();
+            mainWindow.Show ();
         }
     }
 }

@@ -6,8 +6,9 @@ namespace Delta.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow.Show ();
             base.OnStartup (e);
+            var mainWindow = new MainWindow ();
+            MainWindow.Show ();
         }
     }
 }

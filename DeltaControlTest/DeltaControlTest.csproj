@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Delta.WPF\Delta.WPF.csproj" />
+    <ProjectReference Include="..\Delta.WPF.Controls\Delta.WPF.Controls.csproj" />
   </ItemGroup>
 
 </Project>

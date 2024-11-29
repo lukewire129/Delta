@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta", "Delta\Delta.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{E3D23626-57FC-497B-BECB-678708C21BF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delta.WPF", "Delta.WPF\Delta.WPF.csproj", "{0606E1EB-EF00-4C3E-ABF0-3D9D67C2BE1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta.WPF", "Delta.WPF\Delta.WPF.csproj", "{0606E1EB-EF00-4C3E-ABF0-3D9D67C2BE1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeltaWPFSample", "DeltaWPFSample\DeltaWPFSample.csproj", "{736071D7-49CA-40C6-9E98-5BC6F1B2265C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeltaWPFSample", "DeltaWPFSample\DeltaWPFSample.csproj", "{736071D7-49CA-40C6-9E98-5BC6F1B2265C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

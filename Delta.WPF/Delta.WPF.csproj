@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controls\**" />
+    <Compile Remove="VirtualDom\**" />
+    <EmbeddedResource Remove="Controls\**" />
+    <EmbeddedResource Remove="VirtualDom\**" />
+    <None Remove="Controls\**" />
+    <None Remove="VirtualDom\**" />
+    <Page Remove="Controls\**" />
+    <Page Remove="VirtualDom\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DeltaApplication.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Delta\Delta.csproj" />
   </ItemGroup>
 
