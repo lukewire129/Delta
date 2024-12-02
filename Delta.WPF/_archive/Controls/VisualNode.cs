@@ -5,7 +5,7 @@ namespace Delta.WPF
 {
     public partial class VisualNode
     {
-        public string Id { get; } = UniqueIdGenerator.GenerateId (); // 고유 ID 생성
+        public string Id { get; set; } = UniqueIdGenerator.GenerateId (); // 고유 ID 생성
         public string Type { get; set; }
         public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object> ();
         public List<VisualNode> Children { get; set; } = new List<VisualNode>();

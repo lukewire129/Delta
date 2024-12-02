@@ -39,6 +39,7 @@ namespace Delta.WPF
             return (state, SetState);
         }
 
+
         public void Rebuild()
         {
             Debug.WriteLine ("[Rebuild] Resetting _stateIndex to 0.");
@@ -57,6 +58,8 @@ namespace Delta.WPF
 
             Debug.WriteLine ("[Rebuild] Updating _currentVisualNode.");
             _currentVisualNode = newVisualNode;
+
+            UseEffect ();
         }
     }
 }

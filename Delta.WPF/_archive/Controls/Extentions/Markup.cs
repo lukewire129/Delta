@@ -17,7 +17,7 @@
             return node.Height (value);
         }
 
-        public static VisualNode Text(this VisualNode node, string text)
+        public static VisualNode Text(this VisualNode node, string text) 
         {
             return node.SetProperty ("Text", text);
         }
