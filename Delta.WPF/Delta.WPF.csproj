@@ -9,12 +9,16 @@
   <ItemGroup>
     <Compile Remove="Controls\**" />
     <Compile Remove="VirtualDom\**" />
+    <Compile Remove="_archive\**" />
     <EmbeddedResource Remove="Controls\**" />
     <EmbeddedResource Remove="VirtualDom\**" />
+    <EmbeddedResource Remove="_archive\**" />
     <None Remove="Controls\**" />
     <None Remove="VirtualDom\**" />
+    <None Remove="_archive\**" />
     <Page Remove="Controls\**" />
     <Page Remove="VirtualDom\**" />
+    <Page Remove="_archive\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +27,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Delta\Delta.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="cc\" />
   </ItemGroup>
 
 </Project>

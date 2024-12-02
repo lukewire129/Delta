@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Delta
 {
@@ -16,9 +14,16 @@ namespace Delta
                 _stateDictionary[componentId] = stateList;
             }
 
-            if (stateList.Count <= index)
+            // Ensure the state list has enough capacity
+            while (stateList.Count <= index)
             {
-                stateList.Add (initialValue);
+                stateList.Add (null); // Fill with null until the index is available
+            }
+
+            // Initialize the state if not already set
+            if (stateList[index] == null)
+            {
+                stateList[index] = initialValue;
             }
 
             return (T)stateList[index];
@@ -28,7 +33,10 @@ namespace Delta
         {
             if (_stateDictionary.TryGetValue (componentId, out var stateList))
             {
-                stateList[index] = newValue;
+                if (stateList.Count > index)
+                {
+                    stateList[index] = newValue;
+                }
             }
         }
 

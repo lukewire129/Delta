@@ -1,6 +1,5 @@
 ﻿using Delta.WPF;
-using Delta.WPF.cc;
-using System.Windows.Controls;
+using static Delta.WPF.DeltaControl;
 
 namespace DeltaWPFSample.Components
 {
@@ -9,11 +8,10 @@ namespace DeltaWPFSample.Components
         public override VisualNode Render()
         {
             var (count, setCount) = UseState (0);
-
-            return new DeltaVStack ()
-                .AddChild (new DeltaButton ($"Count: {count}", () => setCount (count + 1)))
-                .AddChild (new DeltaButton ("Reset", () => setCount (0)));
+            return VStack (
+                        Button ($"Count: {count}", () => setCount (count + 1)),
+                        Button ("Reset", () => setCount (0))
+                   );
         }
     }
-
 }

@@ -18,28 +18,30 @@ namespace Delta.WPF
         {
             var index = _stateIndex;
             var state = _stateStore.GetOrCreateState (ComponentId, index, initialValue);
-            _stateIndex++;
 
-            void SetState(T newValue)
+            void SetState(T updater)
             {
-                _stateStore.UpdateState (ComponentId, index, newValue);
+                _stateStore.UpdateState (ComponentId, index, updater);
+
                 Rebuild ();
             }
 
+            _stateIndex++;
             return (state, SetState);
         }
 
         public void Rebuild()
         {
-            _stateIndex = 0;
-            var rootNode = Render ();
+            var rootNode = Render (); // 새 트리를 생성
+            _stateIndex = 0; // 렌더링 이후 상태 인덱스를 초기화
+
             if (Content is UIElement existingContent)
             {
-                rootNode.DiffAndUpdate (existingContent);
+                rootNode.DiffAndUpdate (existingContent); // 기존 트리와 새로운 트리를 비교
             }
             else
             {
-                Content = rootNode.CreateElement ();
+                Content = rootNode.CreateElement (); // 초기 렌더링
             }
         }
 

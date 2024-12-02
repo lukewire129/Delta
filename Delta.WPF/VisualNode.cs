@@ -7,18 +7,15 @@ using System.Windows.Controls;
 
 namespace Delta.WPF
 {
-    public abstract class VisualNode 
+    public abstract class VisualNode : VisualNode<UIElement>
     {
-        public string Id { get; } = Guid.NewGuid ().ToString ();
         public List<VisualNode> Children { get; } = new ();
-
-        public abstract UIElement CreateElement();
 
         public virtual void DiffAndUpdate(UIElement element)
         {
             UpdateElementProperties (element);
 
-            if (element is Panel panel)
+            if (element is System.Windows.Controls.Panel panel)
             {
                 SyncChildren (panel);
             }
@@ -48,7 +45,7 @@ namespace Delta.WPF
             }
         }
 
-        private void SyncChildren(Panel panel)
+        private void SyncChildren(System.Windows.Controls.Panel panel)
         {
             var existingChildren = panel.Children.Cast<UIElement> ().ToList ();
             var newChildren = Children.Select (child => child.CreateElement ()).ToList ();
