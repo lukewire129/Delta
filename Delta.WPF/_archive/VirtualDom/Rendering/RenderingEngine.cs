@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Delta;
 namespace Delta.WPF
 {
     public static class RenderingEngine
@@ -29,9 +28,51 @@ namespace Delta.WPF
                     case RemoveChildOperation removeChild:
                         RemoveChild (root, removeChild);
                         break;
+
+                    case RemoveEventOperation removeEvent:
+                        RemoveHandler (root, removeEvent);
+                        break;
+
+                    case AddEventOperation addEvent:
+                        AddHandler (root, addEvent);
+                        break;
                     default:
                         throw new InvalidOperationException ($"Unknown operation type: {operation.GetType ().Name}");
                 }
+            }
+        }
+
+        private static void RemoveHandler(FrameworkElement root, RemoveEventOperation operation)
+        {
+            var targetControl = FindControlById (root, operation.OldNode.Id);
+
+            if (targetControl == null)
+            {
+                Console.WriteLine ($"Control with ID '{operation.OldNode.Id}' not found.");
+                return;
+            }
+
+            var eventInfo = targetControl.GetType ().GetEvent (operation.Event.Key);
+            if (eventInfo != null)
+            {
+                eventInfo.RemoveEventHandler (targetControl, operation.Event.Value);
+            }
+        }
+
+        private static void AddHandler(FrameworkElement root, AddEventOperation operation)
+        {
+            var targetControl = FindControlById (root, operation.NewNode.Id);
+
+            if (targetControl == null)
+            {
+                Console.WriteLine ($"Control with ID '{operation.NewNode.Id}' not found.");
+                return;
+            }
+
+            var eventInfo = targetControl.GetType ().GetEvent (operation.Event.Key);
+            if (eventInfo != null)
+            {
+                eventInfo.AddEventHandler(targetControl, operation.Event.Value);
             }
         }
         private static void ReplaceNode(FrameworkElement root, ReplaceNodeOperation operation)
@@ -57,6 +98,7 @@ namespace Delta.WPF
             }
             else if (LogicalTreeHelper.GetParent (targetControl) is System.Windows.Controls.ContentControl contentControl)
             {
+
                 if (contentControl.Content == targetControl)
                 {
                     var newElement = CreateElement (operation.NewNode);
@@ -67,6 +109,7 @@ namespace Delta.WPF
             {
                 throw new InvalidOperationException ($"Unsupported parent type for ReplaceNode: {targetControl.GetType ().Name}");
             }
+            targetControl.SetUniqueId (operation.NewNode.Id);
         }
         private static void UpdateProperty(FrameworkElement root, UpdatePropertyOperation operation)
         {
@@ -122,14 +165,16 @@ namespace Delta.WPF
                     Console.WriteLine ($"Property '{operation.PropertyName}' does not exist or is not writable on '{targetControl.GetType ().Name}'.");
                 }
             }
+            targetControl.SetUniqueId (operation.NewId);
         }
+
         private static void AddChild(FrameworkElement root, AddChildOperation operation)
         {
-            var targetControl = FindControlById (root, operation.TargetId);
+            var targetControl = FindControlById (root, operation.ParentKey);
 
             if (targetControl == null)
             {
-                Console.WriteLine ($"Control with ID '{operation.TargetId}' not found.");
+                Console.WriteLine ($"Control with ID '{operation.ParentKey}' not found.");
                 return;
             }
 
@@ -185,8 +230,6 @@ namespace Delta.WPF
                 Console.WriteLine ($"Parent of child with ID '{operation.TargetId}' is not a Panel.");
             }
         }
-
-      
 
         public static FrameworkElement CreateElement(VisualNode node)
         {

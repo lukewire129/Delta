@@ -1,5 +1,7 @@
 ﻿using Delta.WPF;
-using static Delta.WPF.DeltaControl;
+
+//using static Delta.WPF.DeltaControl;
+using static Delta.WPF.Control;
 
 namespace DeltaWPFSample.Components
 {
@@ -9,8 +11,8 @@ namespace DeltaWPFSample.Components
         {
             var (count, setCount) = UseState (0);
             return VStack (
-                        Button ($"Count: {count}", () => setCount (count + 1)),
-                        Button ("Reset", () => setCount (0))
+                        Button ($"Count: {count}", (s, e) => setCount (count + 1)),
+                        Button ("Reset", (s, e) => setCount (0))
                    );
         }
     }

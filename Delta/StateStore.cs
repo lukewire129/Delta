@@ -1,48 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Delta
 {
     public class StateStore
     {
-        private readonly Dictionary<string, List<object>> _stateDictionary = new Dictionary<string, List<object>> ();
+        private readonly Dictionary<string, Dictionary<int, object>> _store = new Dictionary<string, Dictionary<int, object>> ();
 
         public T GetOrCreateState<T>(string componentId, int index, T initialValue)
         {
-            if (!_stateDictionary.TryGetValue (componentId, out var stateList))
+            if (!_store.TryGetValue (componentId, out var states))
             {
-                stateList = new List<object> ();
-                _stateDictionary[componentId] = stateList;
+                states = new Dictionary<int, object> ();
+                _store[componentId] = states;
             }
 
-            // Ensure the state list has enough capacity
-            while (stateList.Count <= index)
+            if (!states.TryGetValue (index, out var value))
             {
-                stateList.Add (null); // Fill with null until the index is available
+                states[index] = initialValue;
+                return initialValue;
             }
 
-            // Initialize the state if not already set
-            if (stateList[index] == null)
-            {
-                stateList[index] = initialValue;
-            }
-
-            return (T)stateList[index];
+            return (T)value;
         }
 
         public void UpdateState<T>(string componentId, int index, T newValue)
         {
-            if (_stateDictionary.TryGetValue (componentId, out var stateList))
-            {
-                if (stateList.Count > index)
-                {
-                    stateList[index] = newValue;
-                }
-            }
+            if (!_store.TryGetValue (componentId, out var states))
+                throw new InvalidOperationException ($"Component {componentId} not found");
+
+            if (states.TryGetValue (index, out var existingValue) && !(existingValue is T))
+                throw new InvalidOperationException ($"Cannot change state type at index {index} from {existingValue.GetType ()} to {typeof (T)}.");
+
+            states[index] = newValue;
         }
 
         public void RemoveComponentState(string componentId)
         {
-            _stateDictionary.Remove (componentId);
+            _store.Remove (componentId);
         }
     }
 }

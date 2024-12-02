@@ -14,8 +14,36 @@ namespace Delta.WPF
             // 타입이나 구조가 다른 경우, ReplaceNode로 처리
             if (!oldNode.Equals (newNode))
             {
+                foreach (var oldEvent in oldNode.Events)
+                {
+                    // 기존 핸들러 제거
+                    operations.Add (new RemoveEventOperation (oldNode, oldEvent));
+                }
                 operations.Add (new ReplaceNodeOperation (oldNode.Id, newNode));
                 return operations;
+            }
+
+            if (oldNode != null && newNode != null)
+            {
+                foreach (var oldEvent in oldNode.Events)
+                {
+                    if (!newNode.Events.ContainsKey (oldEvent.Key) ||
+                        newNode.Events[oldEvent.Key] != oldEvent.Value)
+                    {
+                        // 기존 핸들러 제거
+                        operations.Add (new RemoveEventOperation (oldNode, oldEvent));
+                    }
+                }
+
+                foreach (var newEvent in newNode.Events)
+                {
+                    if (!oldNode.Events.ContainsKey (newEvent.Key) ||
+                        oldNode.Events[newEvent.Key] != newEvent.Value)
+                    {
+                        // 새로운 핸들러 추가
+                        operations.Add (new AddEventOperation (oldNode, newEvent));
+                    }
+                }
             }
 
             foreach (var property in newNode.Properties)
@@ -23,7 +51,7 @@ namespace Delta.WPF
                 if (!oldNode.Properties.TryGetValue (property.Key, out var oldValue))
                 {
                     // 기존 속성이 없으면 UpdatePropertyOperation 추가
-                    operations.Add (new UpdatePropertyOperation (oldNode.Id, property.Key, property.Value));
+                    operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                     continue;
                 }
 
@@ -32,20 +60,20 @@ namespace Delta.WPF
                 {
                     if (!CollectionsEqual (newRowDefs, oldRowDefs, AreRowDefinitionsEqual))
                     {
-                        operations.Add (new UpdatePropertyOperation (oldNode.Id, property.Key, property.Value));
+                        operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                     }
                 }
                 else if (property.Value is List<ColumnDefinition> newColDefs && oldValue is List<ColumnDefinition> oldColDefs)
                 {
                     if (!CollectionsEqual (newColDefs, oldColDefs, AreColumnDefinitionsEqual))
                     {
-                        operations.Add (new UpdatePropertyOperation (oldNode.Id, property.Key, property.Value));
+                        operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                     }
                 }
                 else if (!Equals (oldValue, property.Value))
                 {
                     // 일반 값 비교
-                    operations.Add (new UpdatePropertyOperation (oldNode.Id, property.Key, property.Value));
+                    operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                 }
             }
 

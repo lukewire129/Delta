@@ -4,12 +4,14 @@ namespace Delta.WPF
     public class UpdatePropertyOperation : DiffOperation
     {
         public string TargetId { get; }
+        public string NewId { get; }
         public string PropertyName { get; }
         public object NewValue { get; }
 
-        public UpdatePropertyOperation(string targetId, string propertyName, object newValue)
+        public UpdatePropertyOperation(string targetId, string newId, string propertyName, object newValue)
         {
             TargetId = targetId;
+            NewId = newId;
             PropertyName = propertyName;
             NewValue = newValue;
         }

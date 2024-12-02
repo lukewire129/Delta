@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows;
 
 namespace Delta.WPF
 {
@@ -11,12 +12,18 @@ namespace Delta.WPF
             this.Children = node.ToList ();
         }
     }
+
     public partial class Button : ContentControl, IVisual<VisualNode>
     {
         public Button() : base ("Button") { }
         public Button (object o) : base ("Button") 
         {
             this.Content (o);
+        }
+        public Button(object o, RoutedEventHandler handlerFactory) : base ("Button")
+        {
+            this.Content (o);
+            this.OnClick (handlerFactory);
         }
     }
 
@@ -25,6 +32,10 @@ namespace Delta.WPF
         public VStack() : base ("StackPanel") {
             this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Vertical);
         }
+        public VStack(params VisualNode[] node) : this()
+        {
+            this.Children = node.ToList ();
+        }
     }
 
     public partial class HStack : VisualNode
@@ -32,12 +43,16 @@ namespace Delta.WPF
         public HStack() : base ("StackPanel") {
             this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Horizontal);
         }
+        public HStack(params VisualNode[] node) : this ()
+        {
+            this.Children = node.ToList ();
+        }
     }
 
     public partial class Text : ContentControl
     {
         public Text() : base ("Label") { }
-        public Text(object o) : base ("Button")
+        public Text(object o) : base ("Label")
         {
             this.Content (o);
         }

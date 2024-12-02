@@ -1,12 +1,13 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace Delta.WPF
 {
     public static partial class Markup
     {
-        public static VisualNode OnClick(this VisualNode node, RoutedEventHandler handler)
+        public static VisualNode OnClick(this VisualNode node, RoutedEventHandler handlerFactory)
         {
-            return node.AddEvent ("Click", handler);
+            return node.AddEvent ("Click", handlerFactory);
         }
     }
 }
