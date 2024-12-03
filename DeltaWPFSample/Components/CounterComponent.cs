@@ -5,7 +5,7 @@ namespace DeltaWPFSample.Components
 {
     public class CounterComponent : HookComponent
     {
-        public override VisualNode Render()
+        public override IVisual Render()
         {
             var (count, setCount) = UseState (0);
             var (count2, setCount2) = UseState (0);

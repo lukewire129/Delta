@@ -3,17 +3,7 @@ using System.Windows;
 
 namespace Delta.WPF
 {
-    public class Grid : Visual, IGrid<VisualNode>
-    {
-        public Grid() : base ("Grid") { }
-
-        public Grid(params VisualNode[] node) : base ("Grid")
-        {
-            this.Children = node.ToList ();
-        }
-    }
-
-    public partial class Button : ContentControl, IVisual<VisualNode>
+    public partial class Button : ContentControl, IVisual
     {
         public Button() : base ("Button") { }
         public Button (object o) : base ("Button") 
@@ -32,7 +22,7 @@ namespace Delta.WPF
         public VStack() : base ("StackPanel") {
             this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Vertical);
         }
-        public VStack(params VisualNode[] node) : this()
+        public VStack(params IVisual[] node) : this()
         {
             this.Children = node.ToList ();
         }
@@ -43,7 +33,7 @@ namespace Delta.WPF
         public HStack() : base ("StackPanel") {
             this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Horizontal);
         }
-        public HStack(params VisualNode[] node) : this ()
+        public HStack(params IVisual[] node) : this ()
         {
             this.Children = node.ToList ();
         }

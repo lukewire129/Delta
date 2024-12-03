@@ -1,18 +1,9 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Delta.WPF
 {
-    public class Control : VisualNode
+    public partial class Control : VisualNode
     {
-        public static Grid Grid()
-        {
-            return new Grid ();
-        }
-        public static Grid Grid(params VisualNode[] nodes)
-        {
-            return new Grid (nodes);
-        }
         public static Button Button()
         {
             return new Button ();

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta.WPF", "Delta.WPF\Delt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeltaWPFSample", "DeltaWPFSample\DeltaWPFSample.csproj", "{736071D7-49CA-40C6-9E98-5BC6F1B2265C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridTest", "GridTest\GridTest.csproj", "{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,12 +31,17 @@ Global
 		{736071D7-49CA-40C6-9E98-5BC6F1B2265C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{736071D7-49CA-40C6-9E98-5BC6F1B2265C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{736071D7-49CA-40C6-9E98-5BC6F1B2265C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{736071D7-49CA-40C6-9E98-5BC6F1B2265C} = {E3D23626-57FC-497B-BECB-678708C21BF0}
+		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84} = {E3D23626-57FC-497B-BECB-678708C21BF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60E634DF-C48E-4831-AB77-BDA337A7DF2C}

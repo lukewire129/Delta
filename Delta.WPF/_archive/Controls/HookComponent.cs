@@ -10,7 +10,7 @@ namespace Delta.WPF
         private static readonly StateStore _stateStore = new ();
         private int _stateIndex = 0;
         public string ComponentId { get; } = Guid.NewGuid ().ToString ();
-        protected VisualNode _currentVisualNode;
+        protected IVisual _currentVisualNode;
 
         public HookComponent()
         {
@@ -18,7 +18,7 @@ namespace Delta.WPF
             this.Content = MarkupBuilder.Build (_currentVisualNode);
         }
 
-        public abstract VisualNode Render();
+        public abstract IVisual Render();
 
         protected (T state, Action<T> setState) UseState<T>(T initialValue)
         {
