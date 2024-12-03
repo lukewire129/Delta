@@ -5,7 +5,7 @@ namespace Delta.WPF
 {
     public static class VirtualDomConverter
     {
-        public static VisualNode ToVisualNode(FrameworkElement element)
+        public static IVisual ToVisualNode(FrameworkElement element)
         {
             var node = new VisualNode
             {

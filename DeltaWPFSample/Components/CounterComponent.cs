@@ -1,13 +1,11 @@
 ﻿using Delta.WPF;
-
-//using static Delta.WPF.DeltaControl;
 using static Delta.WPF.Control;
 
 namespace DeltaWPFSample.Components
 {
     public class CounterComponent : HookComponent
     {
-        public override VisualNode Render()
+        public override IVisual Render()
         {
             var (count, setCount) = UseState (0);
             return VStack (

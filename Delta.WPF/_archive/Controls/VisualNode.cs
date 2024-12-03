@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Delta.WPF
 {
-    public partial class VisualNode
+    public partial class VisualNode : IVisual
     {
         public string Id { get; } = UniqueIdGenerator.GenerateId (); // 고유 ID 생성
         public string Type { get; set; }
         public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object> ();
-        public List<VisualNode> Children { get; set; } = new List<VisualNode>();
+        public List<IVisual> Children { get; set; } = new List<IVisual> ();
         public Dictionary<string, Delegate> Events { get; set; } = new Dictionary<string, Delegate> (); // 이벤트 저장
 
         // Fluent API로 속성 설정

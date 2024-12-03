@@ -7,7 +7,7 @@ namespace Delta.WPF.Builder
 {
     public static class MarkupBuilder
     {
-        public static FrameworkElement Build(VisualNode node)
+        public static FrameworkElement Build(IVisual node)
         {
             // 타입 검색
             var elementType = Type.GetType($"System.Windows.Controls.{node.Type}, PresentationFramework");

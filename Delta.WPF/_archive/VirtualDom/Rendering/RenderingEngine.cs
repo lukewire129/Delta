@@ -231,7 +231,7 @@ namespace Delta.WPF
             }
         }
 
-        public static FrameworkElement CreateElement(VisualNode node)
+        public static FrameworkElement CreateElement(IVisual node)
         {
             var elementType = Type.GetType ($"System.Windows.Controls.{node.Type}, PresentationFramework");
             if (elementType == null)

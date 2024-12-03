@@ -7,7 +7,7 @@ namespace Delta.WPF
 {
     public static class DiffEngine
     {
-        public static List<DiffOperation> Diff(VisualNode oldNode, VisualNode newNode)
+        public static List<DiffOperation> Diff(IVisual oldNode, IVisual newNode)
         {
             var operations = new List<DiffOperation> ();
 
