@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta.WPF", "Delta.WPF\Delt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeltaWPFSample", "DeltaWPFSample\DeltaWPFSample.csproj", "{736071D7-49CA-40C6-9E98-5BC6F1B2265C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridTest", "GridTest\GridTest.csproj", "{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GridTest", "GridTest\GridTest.csproj", "{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kiosk", "Kiosk\Kiosk.csproj", "{CF4FE2B3-DF7E-453D-BA98-AF9B5E71013E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta.Template", "Delta.Template\Delta.Template.csproj", "{352F812F-2401-4F63-9240-2C2DF1951739}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,14 @@ Global
 		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4FE2B3-DF7E-453D-BA98-AF9B5E71013E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4FE2B3-DF7E-453D-BA98-AF9B5E71013E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4FE2B3-DF7E-453D-BA98-AF9B5E71013E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4FE2B3-DF7E-453D-BA98-AF9B5E71013E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{352F812F-2401-4F63-9240-2C2DF1951739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{352F812F-2401-4F63-9240-2C2DF1951739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{352F812F-2401-4F63-9240-2C2DF1951739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{352F812F-2401-4F63-9240-2C2DF1951739}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +54,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{736071D7-49CA-40C6-9E98-5BC6F1B2265C} = {E3D23626-57FC-497B-BECB-678708C21BF0}
 		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84} = {E3D23626-57FC-497B-BECB-678708C21BF0}
+		{CF4FE2B3-DF7E-453D-BA98-AF9B5E71013E} = {E3D23626-57FC-497B-BECB-678708C21BF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60E634DF-C48E-4831-AB77-BDA337A7DF2C}

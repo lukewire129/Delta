@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace Delta.WPF
 {
-    public partial class Control : VisualNode
+    public partial class HookComponent
     {
         public static IGrid Grid()
         {

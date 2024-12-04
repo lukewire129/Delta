@@ -2,7 +2,7 @@
 
 namespace Delta.WPF
 {
-    public partial class Control : VisualNode
+    public partial class HookComponent
     {
         public static Button Button()
         {

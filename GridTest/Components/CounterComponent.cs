@@ -1,8 +1,5 @@
 ﻿using Delta.WPF;
 
-using static Delta.WPF.Control;
-using static GridTest.Components.Control;
-
 namespace GridTest.Components
 {
     public class CounterComponent : HookComponent
@@ -19,10 +16,10 @@ namespace GridTest.Components
                             .Row(0),
 
                         Button ("Reset", (s, e) => setCount (0))
-                            .Row (1),
+                            .Row (1)
 
-                      CounterComponent1()
-                            .Row (2)
+                      //CounterComponent1()
+                      //      .Row (2)
                     )
                     .Rows (100, 100, 300);
         }

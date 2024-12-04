@@ -1,6 +1,7 @@
 ﻿using Delta.WPF;
+using static Delta.WPF.Control;
 
-namespace DeltaWPFSample.Components
+namespace DeltaTemplate.Components
 {
     public class CounterComponent : HookComponent
     {

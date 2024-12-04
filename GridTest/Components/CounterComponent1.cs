@@ -1,5 +1,4 @@
 ﻿using Delta.WPF;
-using static Delta.WPF.Control;
 
 namespace GridTest.Components
 {

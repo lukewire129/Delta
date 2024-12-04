@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Lukewire",
+  "classifications": [ "WPF", "Code" ],
+  "identity": "Delta.Component",
+  "name": "Delta Component",
+  "description": "Creates a Delta component",
+  "shortName": "delta-Component",
+  "sourceName": "ComponentClass",
+  "preferNameDirectory": true,
+  "defaultName": "Delta",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "symbols": {
+    "namespace": {
+      "description": "Namespace for the generated code",
+      "type": "parameter"
+    },
+    "DefaultNamespace": {
+      "type": "bind",
+      "binding": "msbuild:RootNamespace"
+    },
+    "NamespaceReplacer": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "namespace",
+        "fallbackVariableName": "DefaultNamespace"
+      },
+      "replaces": "DeltaComponentReplace"
+    }
+  }
+}
