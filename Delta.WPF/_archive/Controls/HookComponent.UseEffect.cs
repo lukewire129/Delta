@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Windows;
 
 namespace Delta.WPF
 {
-    public abstract partial class HookComponent : System.Windows.Controls.ContentControl, IDisposable
+    public abstract partial class HookComponent : FrameworkElement, IDisposable
     {
         private readonly List<Action> _effects = new ();
         private readonly List<Action?> _cleanupEffects = new ();

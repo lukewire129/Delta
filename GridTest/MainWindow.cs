@@ -1,4 +1,5 @@
-﻿using GridTest.Components;
+﻿using Delta.WPF;
+using GridTest.Components;
 using System.Windows;
 
 namespace GridTest
@@ -11,8 +12,7 @@ namespace GridTest
             Width = 400;
             Height = 300;
 
-            var counterComponent = new CounterComponent ();
-            Content = counterComponent; // CounterComponent is its own root panel.
+            ApplicationRoot.Initialize (new CounterComponent (), this);
         }
     }
 }

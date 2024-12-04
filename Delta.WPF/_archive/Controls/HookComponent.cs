@@ -1,21 +1,22 @@
-﻿using Delta.WPF.Builder;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Windows;
 
 namespace Delta.WPF
 {
-    public abstract partial class HookComponent : System.Windows.Controls.ContentControl
+    public abstract partial class HookComponent : FrameworkElement
     {
         private static readonly StateStore _stateStore = new ();
         private int _stateIndex = 0;
-        public string ComponentId { get; } = Guid.NewGuid ().ToString ();
-        protected IVisual _currentVisualNode;
+        public string ComponentId { get; }
 
         public HookComponent()
         {
-            _currentVisualNode = Render ();
-            this.Content = MarkupBuilder.Build (_currentVisualNode);
+            ApplicationRoot.Instance.StateIndexInitialize += () =>
+            {
+                _stateIndex = 0;
+            };
+            this.ComponentId = Guid.NewGuid ().ToString ();
         }
 
         public abstract IVisual Render();
@@ -32,34 +33,16 @@ namespace Delta.WPF
                 Debug.WriteLine ($"SetState called for index {index}. New value: {updater}");
                 _stateStore.UpdateState (ComponentId, index, updater);
 
-                Rebuild ();
+               
+                ApplicationRoot.Instance.Rebuild (); // 루트 갱신 호출
+
+                UseEffect ();
             }
 
             _stateIndex++;
             return (state, SetState);
         }
 
-
-        public void Rebuild()
-        {
-            Debug.WriteLine ("[Rebuild] Resetting _stateIndex to 0.");
-
-            _stateIndex = 0;
-            var newVisualNode = Render ();
-
-            Debug.WriteLine ("[Rebuild] Render completed. New VisualNode created.");
-            var diffOperations = DiffEngine.Diff (_currentVisualNode, newVisualNode);
-
-            if (this.Content is FrameworkElement rootElement)
-            {
-                Debug.WriteLine ("[Rebuild] Applying diff operations to root element.");
-                RenderingEngine.ApplyDiff (rootElement, diffOperations);
-            }
-
-            Debug.WriteLine ("[Rebuild] Updating _currentVisualNode.");
-            _currentVisualNode = newVisualNode;
-
-            UseEffect ();
-        }
+        
     }
 }
