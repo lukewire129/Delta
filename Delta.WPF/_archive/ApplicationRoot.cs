@@ -81,5 +81,4 @@ namespace Delta.WPF
             return (T)component!;
         }
     }
-
 }
