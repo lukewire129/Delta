@@ -4,11 +4,15 @@ using System.Windows.Controls;
 
 namespace Delta.WPF
 {
-    public interface IVisual
+    public interface IElement
     {
-        Dictionary<string, object> Properties { get; set; }
         public string Id { get; set; }
         public string Type { get; set; }
+    }
+
+    public interface IVisual : IElement
+    {
+        Dictionary<string, object> Properties { get; set; }        
         public Dictionary<string, Delegate> Events { get; set; }
         public List<IVisual> Children { get; set; }
         VisualNode SetProperty(string name, object value);

@@ -4,11 +4,12 @@ using System.Windows;
 
 namespace Delta.WPF
 {
-    public abstract partial class HookComponent : FrameworkElement
+    public abstract partial class HookComponent : FrameworkElement, IElement
     {
         private static readonly StateStore _stateStore = new ();
         private int _stateIndex = 0;
-        public string ComponentId { get; }
+        public string Id { get; set; }
+        public string Type { get; set; }
 
         public HookComponent()
         {
@@ -16,7 +17,8 @@ namespace Delta.WPF
             {
                 _stateIndex = 0;
             };
-            this.ComponentId = Guid.NewGuid ().ToString ();
+            this.Id = Guid.NewGuid ().ToString ();
+            Type = "Component";
         }
 
         public abstract IVisual Render();
@@ -26,12 +28,12 @@ namespace Delta.WPF
             var index = _stateIndex;
             Debug.WriteLine ($"UseState called. Index: {index}");
 
-            var state = _stateStore.GetOrCreateState (ComponentId, index, initialValue);
+            var state = _stateStore.GetOrCreateState (Id, index, initialValue);
 
             void SetState(T updater)
             {
                 Debug.WriteLine ($"SetState called for index {index}. New value: {updater}");
-                _stateStore.UpdateState (ComponentId, index, updater);
+                _stateStore.UpdateState (Id, index, updater);
 
                
                 ApplicationRoot.Instance.Rebuild (); // 루트 갱신 호출
@@ -42,7 +44,5 @@ namespace Delta.WPF
             _stateIndex++;
             return (state, SetState);
         }
-
-        
     }
 }

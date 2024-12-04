@@ -29,12 +29,6 @@ namespace Delta.WPF
             this.Id = UniqueIdGenerator.GenerateId ();
         }
 
-        // 정적 팩토리 메서드로 노드 생성
-        public static VisualNode Create(string type)
-        {
-            return new VisualNode { Type = type };
-        }
-
         public VisualNode(string nodeType)
         {
             Type = nodeType;
