@@ -1,4 +1,5 @@
-﻿using DeltaWPFSample.Components;
+﻿using Delta.WPF;
+using DeltaWPFSample.Components;
 using System.Windows;
 
 namespace DeltaWPFSample
@@ -11,8 +12,7 @@ namespace DeltaWPFSample
             Width = 400;
             Height = 300;
 
-            var counterComponent = new CounterComponent ();
-            Content = counterComponent; // CounterComponent is its own root panel.
+            ApplicationRoot.Initialize (new CounterComponent (), this);
         }
     }
 }

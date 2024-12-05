@@ -4,24 +4,11 @@ using System.Windows.Controls;
 
 namespace Delta.WPF
 {
-    public partial class HookComponent
-    {
-        public static IGrid Grid()
-        {
-            return new Grid ();
-        }
-
-        public static IGrid Grid(params IVisual[] nodes)
-        {
-            return new Grid (nodes);
-        }
-    }
-
     public class Grid : Visual, IGrid
     {
         public Grid() : base ("Grid") { }
 
-        public Grid(params IVisual[] node) : base ("Grid")
+        public Grid(params IElement[] node) : base ("Grid")
         {
             this.Children = node.ToList ();
         }

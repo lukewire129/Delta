@@ -8,7 +8,7 @@ namespace Delta.WPF
         {
             return node.Content (content);
         }
-        public static IVisual Text(this IVisual node, string text)
+        public static IElement Text(this IElement node, string text)
         {
             return node.SetProperty ("Text", text);
         }

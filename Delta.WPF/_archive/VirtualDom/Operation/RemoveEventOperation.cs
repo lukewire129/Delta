@@ -5,9 +5,9 @@ namespace Delta.WPF
 {
     public class RemoveEventOperation : DiffOperation
     {
-        public IVisual OldNode { get; }
+        public IElement OldNode { get; }
         public KeyValuePair<string, Delegate> Event { get; }
-        public RemoveEventOperation(IVisual oldNode, KeyValuePair<string, Delegate> eventd)
+        public RemoveEventOperation(IElement oldNode, KeyValuePair<string, Delegate> eventd)
         {
             OldNode = oldNode;
             Event = eventd;
@@ -16,13 +16,13 @@ namespace Delta.WPF
     }
     public class AddEventOperation : DiffOperation
     {
-        public AddEventOperation(IVisual newNode, KeyValuePair<string, Delegate> eventd)
+        public AddEventOperation(IElement newNode, KeyValuePair<string, Delegate> eventd)
         {
             NewNode = newNode;
             Event = eventd;
         }
 
-        public IVisual NewNode { get; }
+        public IElement NewNode { get; }
         public KeyValuePair<string, Delegate> Event { get; }
     }
 }

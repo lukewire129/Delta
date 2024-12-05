@@ -1,27 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Delta.WPF
 {
     public interface IElement
     {
-        public string Id { get; set; }
-        public string Type { get; set; }
+        string Id { get; set; }
+        string Type { get; set; }
+        bool TryGetValue(string propertyName, [MaybeNullWhen (false)] out object value);
+        public List<IElement> Children { get; set; }
+        Dictionary<string, object> Properties { get; set; }
+        IElement SetProperty(string name, object value);
+        public Dictionary<string, Delegate> Events { get; set; }
+        IElement AddEvent(string eventName, Delegate handler);
     }
 
     public interface IVisual : IElement
     {
-        Dictionary<string, object> Properties { get; set; }        
-        public Dictionary<string, Delegate> Events { get; set; }
-        public List<IVisual> Children { get; set; }
-        VisualNode SetProperty(string name, object value);
     }
 
     public interface IGrid : IVisual
     {
-        List<RowDefinition> GetRowsDefinitions();
-        List<ColumnDefinition> GetColumnsDefinitions();
+        List<System.Windows.Controls.RowDefinition> GetRowsDefinitions();
+        List<System.Windows.Controls.ColumnDefinition> GetColumnsDefinitions();
     }
 
     public interface IContent : IVisual

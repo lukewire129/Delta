@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace Delta.WPF
 {
-    public abstract partial class HookComponent : FrameworkElement, IDisposable
+    public abstract partial class Component
     {
         private readonly List<Action> _effects = new ();
         private readonly List<Action?> _cleanupEffects = new ();

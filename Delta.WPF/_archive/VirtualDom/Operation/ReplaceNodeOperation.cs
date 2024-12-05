@@ -4,9 +4,9 @@ namespace Delta.WPF
     public class ReplaceNodeOperation : DiffOperation
     {
         public string TargetId { get; }
-        public IVisual NewNode { get; }
+        public IElement NewNode { get; }
 
-        public ReplaceNodeOperation(string targetId, IVisual newNode)
+        public ReplaceNodeOperation(string targetId, IElement newNode)
         {
             TargetId = targetId;
             NewNode = newNode;

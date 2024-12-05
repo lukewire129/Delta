@@ -2,7 +2,7 @@
 
 namespace GridTest.Components
 {
-    public class CounterComponent1 : HookComponent
+    public class CounterComponent1 : Component
     {
         public override IVisual Render()
         {
@@ -21,12 +21,11 @@ namespace GridTest.Components
         }
     }
 
-    public partial class Control : VisualNode
+    public partial class Control
     {
-        public static IVisual CounterComponent1()
+        public static IElement CounterComponent1()
         {
-            var counterComponent1 = ApplicationRoot.GetOrCreateComponent (new CounterComponent1 ());
-            return counterComponent1.Render ();
+            return new CounterComponent1 ();
         }
     }
 }

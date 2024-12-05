@@ -231,15 +231,15 @@ namespace Delta.WPF
             }
         }
 
-        public static FrameworkElement CreateElement(IVisual node)
+        public static FrameworkElement CreateElement(IElement node)
         {
-            var elementType = Type.GetType ($"System.Windows.Controls.{node.Type}, PresentationFramework");
+            Type elementType = Type.GetType ($"System.Windows.Controls.{node.Type}, PresentationFramework");
             if (elementType == null)
-                throw new InvalidOperationException ($"Element type '{node.Type}' not found.");
+                throw new InvalidOperationException ($"Unknown element type: {node.Type}");
 
             var element = (FrameworkElement)Activator.CreateInstance (elementType);
 
-            element.SetUniqueId (node.Id); // 고유 ID 설정
+
 
             foreach (var property in node.Properties)
             {
@@ -258,12 +258,15 @@ namespace Delta.WPF
                 }
             }
 
-            if (node.Children != null && node.Children.Count > 0 && element is Panel panel)
+            if (element is Panel panel)
             {
-                foreach (var childNode in node.Children)
+                if(node.Children != null && node.Children.Count > 0)
                 {
-                    var childElement = CreateElement (childNode);
-                    panel.Children.Add (childElement);
+                    foreach (var childNode in node.Children)
+                    {
+                        var childElement = CreateElement (childNode);
+                        panel.Children.Add (childElement);
+                    }
                 }
             }
 

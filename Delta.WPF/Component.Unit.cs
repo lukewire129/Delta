@@ -1,9 +1,21 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 
 namespace Delta.WPF
 {
-    public partial class HookComponent
+    public abstract partial class Component
     {
+        public static IGrid Grid()
+        {
+            return new Grid ();
+        }
+
+        public static IGrid Grid(params IElement[] nodes)
+        {
+            return new Grid (nodes);
+        }
+
         public static Button Button()
         {
             return new Button ();
@@ -16,11 +28,11 @@ namespace Delta.WPF
         {
             return new Button (o, handlerFactory);
         }
-        public static VStack VStack(params VisualNode[] nodes)
+        public static VStack VStack(params IElement[] nodes)
         {
             return new VStack (nodes);
         }
-        public static HStack HStack(params VisualNode[] nodes)
+        public static HStack HStack(params IElement[] nodes)
         {
             return new HStack (nodes);
         }

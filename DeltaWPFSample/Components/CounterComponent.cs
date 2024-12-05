@@ -2,7 +2,7 @@
 
 namespace DeltaWPFSample.Components
 {
-    public class CounterComponent : HookComponent
+    public class CounterComponent : Component
     {
         public override IVisual Render()
         {

@@ -4,9 +4,9 @@ namespace Delta.WPF
     public class AddChildOperation : DiffOperation
     {
         public string ParentKey { get; }
-        public IVisual ChildNode { get; }
+        public IElement ChildNode { get; }
 
-        public AddChildOperation(string ParentKey, IVisual childNode)
+        public AddChildOperation(string ParentKey, IElement childNode)
         {
             ParentKey = ParentKey;
             ChildNode = childNode;

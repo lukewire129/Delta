@@ -17,23 +17,23 @@ namespace Delta.WPF
         }
     }
 
-    public partial class VStack : VisualNode
+    public partial class VStack : VisualElement, IVisual
     {
         public VStack() : base ("StackPanel") {
             this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Vertical);
         }
-        public VStack(params IVisual[] node) : this()
+        public VStack(params IElement[] node) : this()
         {
             this.Children = node.ToList ();
         }
     }
 
-    public partial class HStack : VisualNode
+    public partial class HStack : VisualElement, IVisual
     {
         public HStack() : base ("StackPanel") {
             this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Horizontal);
         }
-        public HStack(params IVisual[] node) : this ()
+        public HStack(params IElement[] node) : this ()
         {
             this.Children = node.ToList ();
         }
@@ -48,7 +48,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Input : VisualNode
+    public partial class Input : VisualElement
     {
         public Input() : base ("TextBox") { }
     }

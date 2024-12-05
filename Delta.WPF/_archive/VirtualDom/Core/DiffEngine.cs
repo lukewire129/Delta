@@ -7,7 +7,7 @@ namespace Delta.WPF
 {
     public static class DiffEngine
     {
-        public static List<DiffOperation> Diff(IVisual oldNode, IVisual newNode)
+        public static List<DiffOperation> Diff(IElement oldNode, IElement newNode)
         {
             bool isOperation = false;
             var operations = new List<DiffOperation> ();
@@ -74,7 +74,7 @@ namespace Delta.WPF
                         isOperation = true;
                     }
                 }
-                else if (!Equals (oldValue, property.Value))
+                if (!Equals (oldValue, property.Value))
                 {
                     // 일반 값 비교
                     operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));

@@ -4,56 +4,56 @@ namespace Delta.WPF
 {
     public static partial class Markup
     {
-        public static IVisual Row(this IVisual node, int value)
+        public static IElement Row(this IElement node, int value)
         {
             return node.SetProperty ("Grid.Row", value);
         }
-        public static IVisual Column(this IVisual node, int value)
+        public static IElement Column(this IElement node, int value)
         {
             return node.SetProperty ("Grid.Column", value);
         }
 
-        public static IVisual Size(this IVisual node, double width = 0.0, double height = 0.0)
+        public static IElement Size(this IElement node, double width = 0.0, double height = 0.0)
         {
             return node.Width (width)
                        .Height(height);
         }
 
-        public static IVisual Width(this IVisual node, double value)
+        public static IElement Width(this IElement node, double value)
         {
             return node.SetProperty ("Width", value);
         }
 
-        public static IVisual Height(this IVisual node, double value)
+        public static IElement Height(this IElement node, double value)
         {
             return node.SetProperty ("Height", value);
         }
 
-        public static IVisual Start(this IVisual node)
+        public static IElement Start(this IElement node)
         {
             return node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Left);
         }
-        public static IVisual HCenter(this IVisual node)
+        public static IElement HCenter(this IElement node)
         {
             return node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Center);
         }
-        public static IVisual End(this IVisual node)
+        public static IElement End(this IElement node)
         {
             return node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Right);
         }
-        public static IVisual Top(this IVisual node)
+        public static IElement Top(this IElement node)
         {
             return node.SetProperty ("VerticalAlignment", VerticalAlignment.Top);
         }
-        public static IVisual VCenter(this IVisual node)
+        public static IElement VCenter(this IElement node)
         {
             return node.SetProperty ("VerticalAlignment", VerticalAlignment.Center);
         }
-        public static IVisual Bottom(this IVisual node)
+        public static IElement Bottom(this IElement node)
         {
             return node.SetProperty ("VerticalAlignment", VerticalAlignment.Bottom);
         }
-        public static IVisual Center(this IVisual node)
+        public static IElement Center(this IElement node)
         {
             return node.HCenter ().VCenter ();
         }

@@ -4,24 +4,20 @@ using System.Windows;
 
 namespace Delta.WPF
 {
-    public abstract partial class HookComponent : FrameworkElement, IElement
+    public abstract partial class Component : VisualElement
     {
         private static readonly StateStore _stateStore = new ();
         private int _stateIndex = 0;
-        public string Id { get; set; }
-        public string Type { get; set; }
-
-        public HookComponent()
+        public Component() : base("Grid")
         {
             ApplicationRoot.Instance.StateIndexInitialize += () =>
             {
                 _stateIndex = 0;
             };
             this.Id = Guid.NewGuid ().ToString ();
-            Type = "Component";
         }
 
-        public abstract IVisual Render();
+        public abstract IElement Render();
 
         protected (T state, Action<T> setState) UseState<T>(T initialValue)
         {
@@ -35,14 +31,25 @@ namespace Delta.WPF
                 Debug.WriteLine ($"SetState called for index {index}. New value: {updater}");
                 _stateStore.UpdateState (Id, index, updater);
 
-               
+
                 ApplicationRoot.Instance.Rebuild (); // 루트 갱신 호출
 
-                UseEffect ();
+                //UseEffect ();
             }
 
             _stateIndex++;
             return (state, SetState);
+        }
+
+        public IElement VirtualRender()
+        {
+            var root = this.Render ();
+            this.Children.Add (root);
+            //foreach (var element in root.Children)
+            //{
+            //    this.Children.Add (element);
+            //}
+            return this;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace GridTest.Components
 {
-    public class CounterComponent : HookComponent
+    public class CounterComponent : Component
     {
         public override IVisual Render()
         {
@@ -10,15 +10,15 @@ namespace GridTest.Components
 
 
             return Grid (
-                        Button ($"Count: {count}", (s, e) => setCount (count + 1))
+                        Button ($"Count123: {count}", (s, e) => setCount (count + 1))
                             .Size(100, 50)
                             .Start()
                             .Row(0),
 
-                        Button ("Reset", (s, e) => setCount (0))
+                        Button ("Reset123", (s, e) => setCount (0))
                             .Row (1)
 
-                      //CounterComponent1()
+                      //Control.CounterComponent1 ()
                       //      .Row (2)
                     )
                     .Rows (100, 100, 300);
