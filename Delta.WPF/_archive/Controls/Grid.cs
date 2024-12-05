@@ -4,13 +4,12 @@ using System.Windows.Controls;
 
 namespace Delta.WPF
 {
-    public class Grid : Visual, IGrid
+    public class Grid : Panel, IGrid
     {
         public Grid() : base ("Grid") { }
 
-        public Grid(params IElement[] node) : base ("Grid")
+        public Grid(params IElement[] node) : base ("Grid", node)
         {
-            this.Children = node.ToList ();
         }
 
         public List<RowDefinition> GetRowsDefinitions()

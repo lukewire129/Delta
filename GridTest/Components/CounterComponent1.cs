@@ -21,6 +21,8 @@ namespace GridTest.Components
         }
     }
 
+    // TODO : 제네레이터 만들어주는 기능 필요할까?
+
     public partial class Control
     {
         public static IElement CounterComponent1()

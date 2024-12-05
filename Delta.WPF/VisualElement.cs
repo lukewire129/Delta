@@ -9,7 +9,7 @@ namespace Delta.WPF
             this.Id = UniqueIdGenerator.GenerateId ();
         }
 
-        public VisualElement(string nodeType) : base()
+        public VisualElement(string nodeType) : this()
         {
             Type = nodeType;
             Console.WriteLine ($"VisualNode created with NodeType: {Type}");

@@ -74,7 +74,7 @@ namespace Delta.WPF
                         isOperation = true;
                     }
                 }
-                if (!Equals (oldValue, property.Value))
+                else if (!Equals (oldValue, property.Value))
                 {
                     // 일반 값 비교
                     operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));

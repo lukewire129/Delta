@@ -16,10 +16,10 @@ namespace GridTest.Components
                             .Row(0),
 
                         Button ("Reset123", (s, e) => setCount (0))
-                            .Row (1)
+                            .Row (1),
 
-                      //Control.CounterComponent1 ()
-                      //      .Row (2)
+                      new CounterComponent1 ()
+                            .Row (2)
                     )
                     .Rows (100, 100, 300);
         }

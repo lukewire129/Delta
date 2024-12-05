@@ -60,25 +60,5 @@ namespace Delta.WPF
             }
             _effects.Clear ();
         }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                Debug.WriteLine ("Component disposing...");
-                // 등록된 모든 클린업 호출
-                foreach (var cleanup in _cleanupEffects)
-                {
-                    cleanup?.Invoke ();
-                }
-                _cleanupEffects.Clear ();
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose (true);
-            GC.SuppressFinalize (this);
-        }
     }
 }

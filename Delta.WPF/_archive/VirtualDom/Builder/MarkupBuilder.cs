@@ -15,7 +15,7 @@ namespace Delta.WPF
                 throw new InvalidOperationException ($"Unknown element type: {node.Type}");
 
             var element = (FrameworkElement)Activator.CreateInstance (elementType);
-
+            element.SetUniqueId (node.Id); // 고유 ID 설정
             // Grid-specific setup for RowDefinitions and ColumnDefinitions
             if (element is System.Windows.Controls.Grid grid)
             {
@@ -59,7 +59,7 @@ namespace Delta.WPF
             }
 
             // Process children and Grid.Row/Grid.Column properties // Component인 경우엔 Grid로
-            if (element is Panel panel)
+            if (node.Children.Count > 0 && element is System.Windows.Controls.Panel panel)
             {
                 foreach (var childNode in node.Children)
                 {
@@ -77,6 +77,13 @@ namespace Delta.WPF
 
                     panel.Children.Add (childElement);
                 }
+            }
+            else if(node.GetType ().BaseType.Name == "Component")
+            {
+                var aa = (FrameworkElement)Activator.CreateInstance (node.GetType ());
+
+                var component = (Component)aa;
+                component.Children.Add (component.Render ());
             }
 
             return element;

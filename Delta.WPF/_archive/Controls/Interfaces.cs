@@ -14,6 +14,7 @@ namespace Delta.WPF
         IElement SetProperty(string name, object value);
         public Dictionary<string, Delegate> Events { get; set; }
         IElement AddEvent(string eventName, Delegate handler);
+        bool Equals(object obj);
     }
 
     public interface IVisual : IElement
@@ -28,5 +29,6 @@ namespace Delta.WPF
 
     public interface IContent : IVisual
     {
+
     }
 }

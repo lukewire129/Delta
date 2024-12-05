@@ -85,7 +85,7 @@ namespace Delta.WPF
                 return;
             }
 
-            if (LogicalTreeHelper.GetParent (targetControl) is Panel panel)
+            if (LogicalTreeHelper.GetParent (targetControl) is System.Windows.Controls.Panel panel)
             {
                 var index = panel.Children.IndexOf (targetControl);
                 if (index >= 0)
@@ -178,7 +178,7 @@ namespace Delta.WPF
                 return;
             }
 
-            if (targetControl is Panel panel)
+            if (targetControl is System.Windows.Controls.Panel panel)
             {
                 var newElement = CreateElement (operation.ChildNode);
                 panel.Children.Add (newElement);
@@ -221,7 +221,7 @@ namespace Delta.WPF
                 return;
             }
 
-            if (LogicalTreeHelper.GetParent (childToRemove) is Panel panel)
+            if (LogicalTreeHelper.GetParent (childToRemove) is System.Windows.Controls.Panel panel)
             {
                 panel.Children.Remove (childToRemove);
             }
@@ -258,7 +258,7 @@ namespace Delta.WPF
                 }
             }
 
-            if (element is Panel panel)
+            if (element is System.Windows.Controls.Panel panel)
             {
                 if(node.Children != null && node.Children.Count > 0)
                 {

@@ -6,7 +6,7 @@ namespace Delta.WPF
     public partial class Button : ContentControl, IVisual
     {
         public Button() : base ("Button") { }
-        public Button (object o) : base ("Button") 
+        public Button(object o) : base ("Button")
         {
             this.Content (o);
         }
@@ -17,25 +17,27 @@ namespace Delta.WPF
         }
     }
 
-    public partial class VStack : VisualElement, IVisual
+    public partial class VStack : Panel, IVisual
     {
-        public VStack() : base ("StackPanel") {
+        public VStack() : base ("StackPanel")
+        {
             this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Vertical);
         }
-        public VStack(params IElement[] node) : this()
+        public VStack(params IElement[] node) : base ("StackPanel", node)
         {
-            this.Children = node.ToList ();
+            this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Vertical);
         }
     }
 
-    public partial class HStack : VisualElement, IVisual
+    public partial class HStack : Panel, IVisual
     {
-        public HStack() : base ("StackPanel") {
+        public HStack() : base ("StackPanel")
+        {
             this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Horizontal);
         }
-        public HStack(params IElement[] node) : this ()
+        public HStack(params IElement[] node) : base ("StackPanel", node)
         {
-            this.Children = node.ToList ();
+            this.SetProperty ("Orientation", System.Windows.Controls.Orientation.Horizontal);
         }
     }
 

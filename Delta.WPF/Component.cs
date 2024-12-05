@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Windows;
 
 namespace Delta.WPF
 {
-    public abstract partial class Component : VisualElement
+    public abstract partial class Component : VisualElement, IDisposable
     {
         private static readonly StateStore _stateStore = new ();
         private int _stateIndex = 0;
@@ -14,7 +13,6 @@ namespace Delta.WPF
             {
                 _stateIndex = 0;
             };
-            this.Id = Guid.NewGuid ().ToString ();
         }
 
         public abstract IElement Render();
@@ -41,15 +39,38 @@ namespace Delta.WPF
             return (state, SetState);
         }
 
-        public IElement VirtualRender()
+        public IElement RenderTree()
         {
-            var root = this.Render ();
-            this.Children.Add (root);
-            //foreach (var element in root.Children)
-            //{
-            //    this.Children.Add (element);
-            //}
+            // 렌더링 결과 생성 및 Children에 추가
+            var renderedElement = Render ();
+
+            if (renderedElement is IElement visualElement)
+            {
+                Children.Clear (); // 기존 Children 제거
+                Children.Add (visualElement);
+            }
+
             return this;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Debug.WriteLine ("Component disposing...");
+                // 등록된 모든 클린업 호출
+                foreach (var cleanup in _cleanupEffects)
+                {
+                    cleanup?.Invoke ();
+                }
+                _cleanupEffects.Clear ();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose (true);
+            GC.SuppressFinalize (this);
         }
     }
 }
