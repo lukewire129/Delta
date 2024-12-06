@@ -9,7 +9,6 @@ namespace Delta.WPF
     {
         public static List<DiffOperation> Diff(IElement oldNode, IElement newNode)
         {
-            bool isOperation = false;
             var operations = new List<DiffOperation> ();
 
             // 타입이나 구조가 다른 경우, ReplaceNode로 처리
@@ -53,7 +52,6 @@ namespace Delta.WPF
                 {
                     // 기존 속성이 없으면 UpdatePropertyOperation 추가
                     operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
-                    isOperation = true;
                     continue;
                 }
 
@@ -63,7 +61,6 @@ namespace Delta.WPF
                     if (!CollectionsEqual (newRowDefs, oldRowDefs, AreRowDefinitionsEqual))
                     {
                         operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
-                        isOperation = true;
                     }
                 }
                 else if (property.Value is List<ColumnDefinition> newColDefs && oldValue is List<ColumnDefinition> oldColDefs)
@@ -71,14 +68,12 @@ namespace Delta.WPF
                     if (!CollectionsEqual (newColDefs, oldColDefs, AreColumnDefinitionsEqual))
                     {
                         operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
-                        isOperation = true;
                     }
                 }
                 else if (!Equals (oldValue, property.Value))
                 {
                     // 일반 값 비교
                     operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
-                    isOperation = true;
                 }
             }
 
@@ -88,7 +83,6 @@ namespace Delta.WPF
                 if (!newNode.Properties.ContainsKey (property.Key))
                 {
                     operations.Add (new RemovePropertyOperation (oldNode.Id, property.Key));
-                    isOperation = true;
                 }
             }
 
@@ -112,19 +106,13 @@ namespace Delta.WPF
             foreach (var unmatchedOldChild in unmatchedOldChildren)
             {
                 operations.Add (new RemoveChildOperation (unmatchedOldChild.Id));
-                isOperation = true;
             }
 
             foreach (var unmatchedNewChild in unmatchedNewChildren)
             {
                 operations.Add (new AddChildOperation (oldNode.Id, unmatchedNewChild));
-                isOperation = true;
             }
 
-            if(isOperation == false)
-            {
-                newNode.Id = oldNode.Id;
-            }
             return operations;
         }
 
