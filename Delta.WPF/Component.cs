@@ -39,20 +39,6 @@ namespace Delta.WPF
             return (state, SetState);
         }
 
-        public IElement RenderTree()
-        {
-            // 렌더링 결과 생성 및 Children에 추가
-            var renderedElement = Render ();
-
-            if (renderedElement is IElement visualElement)
-            {
-                Children.Clear (); // 기존 Children 제거
-                Children.Add (visualElement);
-            }
-
-            return this;
-        }
-
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

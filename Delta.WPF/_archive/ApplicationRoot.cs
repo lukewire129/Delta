@@ -24,13 +24,14 @@ namespace Delta.WPF
             _instance.InitializeInternal (rootComponent);
             _instance.InitializeInternal (mainWindow);
         }
+
         private void InitializeInternal(Component rootComponent)
         {
             _rootComponent = rootComponent;
         }
+
         private void InitializeInternal(Window mainWindow)
         {
-
             _currentVisualNode = _rootComponent.Render ();
             var rootVisual = MarkupBuilder.Build (_currentVisualNode);
 

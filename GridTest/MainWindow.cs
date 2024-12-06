@@ -10,7 +10,7 @@ namespace GridTest
         {
             Title = "MVU Application";
             Width = 400;
-            Height = 300;
+            Height = 600;
 
             ApplicationRoot.Initialize (new CounterComponent (), this);
         }

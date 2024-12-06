@@ -15,6 +15,7 @@ namespace Delta.WPF
         public Dictionary<string, Delegate> Events { get; set; }
         IElement AddEvent(string eventName, Delegate handler);
         bool Equals(object obj);
+        public void LoadNodeNumber(int parentId, int myId);
     }
 
     public interface IVisual : IElement

@@ -7,7 +7,8 @@ namespace Delta.WPF
 {
     public class Element : FrameworkElement, IElement
     {
-        public string Id { get; set; }
+        public int ParentId { get; set; } = 0;
+        public string Id { get; set; } = "0";
         public string Type { get; set; }
         public List<IElement> Children { get; set; } = new List<IElement>();
         public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object> ();
@@ -26,7 +27,11 @@ namespace Delta.WPF
             return false;
         }
 
-
+        public void LoadNodeNumber(int parentId, int myId)
+        {
+            ParentId = parentId;
+            this.Id = $"{parentId}_{myId}";
+        }
         public IElement SetProperty(string name, object value)
         {
             Properties[name] = value;

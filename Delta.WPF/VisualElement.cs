@@ -6,7 +6,6 @@ namespace Delta.WPF
     {
         public VisualElement()
         {
-            this.Id = UniqueIdGenerator.GenerateId ();
         }
 
         public VisualElement(string nodeType) : this()
