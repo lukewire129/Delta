@@ -5,8 +5,8 @@
         [STAThread]
         private static void Main(string[] args)
         {
-            _ = new App ()
-                .Run ();
+            new App ()
+                .Run (new MainWindow ());
         }
     }
 }
