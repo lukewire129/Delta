@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
+using Delta.WPF._archive.Controls.Extentions;
 namespace Delta.WPF
 {
     public static class RenderingEngine
@@ -72,7 +72,7 @@ namespace Delta.WPF
             var eventInfo = targetControl.GetType ().GetEvent (operation.Event.Key);
             if (eventInfo != null)
             {
-                eventInfo.AddEventHandler(targetControl, operation.Event.Value);
+                eventInfo.AddEventHandler (targetControl, operation.Event.Value);
             }
         }
         private static void ReplaceNode(FrameworkElement root, ReplaceNodeOperation operation)
@@ -132,38 +132,9 @@ namespace Delta.WPF
             {
                 property.SetValue (targetControl, operation.NewValue);
             }
-            else if (operation.PropertyName == "RowDefinitions")
-            {
-                ((System.Windows.Controls.Grid)targetControl).RowDefinitions.Clear ();
-
-                foreach(var rowdefinition in (List<RowDefinition>)operation.NewValue)
-                {
-                    ((System.Windows.Controls.Grid)targetControl).RowDefinitions.Add (rowdefinition);
-                }
-                
-            }
-            else if(operation.PropertyName == "ColumnDefinitions")
-            {
-                ((System.Windows.Controls.Grid)targetControl).ColumnDefinitions.Clear ();
-                foreach (var columndefinition in (List<ColumnDefinition>)operation.NewValue)
-                {
-                    ((System.Windows.Controls.Grid)targetControl).ColumnDefinitions.Add (columndefinition);
-                }
-            }
             else
             {
-                if (operation.PropertyName == "Grid.Row")
-                {
-                    System.Windows.Controls.Grid.SetRow (targetControl, (int)operation.NewValue);
-                }
-                else if (operation.PropertyName == "Grid.Column")
-                {
-                    System.Windows.Controls.Grid.SetColumn (targetControl, (int)operation.NewValue);
-                }
-                else
-                {
-                    Console.WriteLine ($"Property '{operation.PropertyName}' does not exist or is not writable on '{targetControl.GetType ().Name}'.");
-                }
+                targetControl.UpdateAttachedProperty (operation.PropertyName, operation.NewValue);
             }
             targetControl.SetUniqueId (operation.NewId);
         }
@@ -248,19 +219,15 @@ namespace Delta.WPF
                 {
                     propInfo.SetValue (element, property.Value);
                 }
-                else if (property.Key == "Grid.Row")
+                else
                 {
-                    System.Windows.Controls.Grid.SetRow (element, (int)property.Value);
-                }
-                else if (property.Key == "Grid.Column")
-                {
-                    System.Windows.Controls.Grid.SetColumn (element, (int)property.Value);
+                    element.UpdateAttachedProperty (property.Key, property.Value);
                 }
             }
 
             if (element is System.Windows.Controls.Panel panel)
             {
-                if(node.Children != null && node.Children.Count > 0)
+                if (node.Children != null && node.Children.Count > 0)
                 {
                     foreach (var childNode in node.Children)
                     {

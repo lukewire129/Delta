@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Delta.WPF._archive.Controls.Extentions;
 namespace Delta.WPF
 {
     public class Panel : Visual
@@ -28,13 +28,11 @@ namespace Delta.WPF
                     element.LoadNodeNumber (parentId, id);
                     // 부모에서 자식의 Render 결과를 자동 추가
                     var renderedChild = component.Render ();
-                    if(element.TryGetValue ("Grid.Row", out var row))
+
+                    var temp = element.GetAttachedProperty ();
+                    foreach (var item in temp)
                     {
-                        renderedChild.Properties.Add ("Grid.Row", row);
-                    }
-                    else if (element.TryGetValue ("Grid.Column", out var column))
-                    {
-                        renderedChild.Properties.Add ("Grid.Column", row);
+                        renderedChild.Properties.Add (item.Key, item.Value);
                     }
                     renderedChild.LoadNodeNumber(parentId, id);
 

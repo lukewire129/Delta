@@ -12,7 +12,14 @@ namespace Delta.WPF
         {
             return node.SetProperty ("Grid.Column", value);
         }
-
+        public static IElement RowSpan(this IElement node, int value)
+        {
+            return node.SetProperty ("Grid.RowSpan", value);
+        }
+        public static IElement ColumnSpan(this IElement node, int value)
+        {
+            return node.SetProperty ("Grid.ColumnSpan", value);
+        }
         public static IElement Size(this IElement node, double width = 0.0, double height = 0.0)
         {
             return node.Width (width)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-
+using Delta.WPF._archive.Controls.Extentions;
 namespace Delta.WPF
 {
     public static class MarkupBuilder
@@ -66,13 +66,10 @@ namespace Delta.WPF
                     var childElement = Build (childNode);
 
                     // Apply Grid.Row and Grid.ColumnSystem.NullReferenceException: 'Object reference not set to an instance of an object.'
-                    if (childNode.TryGetValue ("Grid.Row", out var rowValue) && rowValue is int row)
+                    var attachedProperty = childNode.GetAttachedProperty ();
+                    foreach (var item in attachedProperty)
                     {
-                        System.Windows.Controls.Grid.SetRow (childElement, row);
-                    }
-                    if (childNode.TryGetValue ("Grid.Column", out var colValue) && colValue is int col)
-                    {
-                        System.Windows.Controls.Grid.SetColumn (childElement, col);
+                        childElement.UpdateAttachedProperty(item.Key, item.Value);
                     }
 
                     panel.Children.Add (childElement);
