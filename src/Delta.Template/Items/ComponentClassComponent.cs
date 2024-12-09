@@ -2,7 +2,7 @@
 
 namespace DeltaComponentReplace;
 
-public class ComponentClassComponent : HookComponent
+public class ComponentClassComponent : Component
 {
     public override IVisual Render()
     {
