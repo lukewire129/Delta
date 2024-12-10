@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Delta.WPF._archive.Controls.Extentions;
+﻿using Delta.WPF._archive.Controls.Extentions;
 namespace Delta.WPF
 {
     public class Panel : Visual

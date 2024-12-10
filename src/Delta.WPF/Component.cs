@@ -13,6 +13,7 @@ namespace Delta.WPF
             {
                 _stateIndex = 0;
             };
+            var aa = new System.Windows.Controls.TextBlock ();
         }
 
         public abstract IElement Render();

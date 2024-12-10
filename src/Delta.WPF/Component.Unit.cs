@@ -1,21 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Delta.WPF
 {
     public abstract partial class Component
     {
-        public static IGrid Grid()
-        {
-            return new Grid ();
-        }
-
-        public static IGrid Grid(params IElement[] nodes)
-        {
-            return new Grid (nodes);
-        }
-
         public static Button Button()
         {
             return new Button ();
@@ -40,7 +28,7 @@ namespace Delta.WPF
         {
             return new Text ();
         }
-        public static Text Text(object o)
+        public static Text Text(string o)
         {
             return new Text (o);
         }

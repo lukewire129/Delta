@@ -1,8 +1,11 @@
-﻿using System.Windows;
+﻿using System.Drawing;
+using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 namespace Delta.WPF
 {
-    public partial class Button : ContentControl, IVisual
+    public partial class Button : ContentControl, IVisual, IText
     {
         public Button() : base ("Button") { }
         public Button(object o) : base ("Button")
@@ -40,16 +43,16 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Text : ContentControl
+    public partial class Text : Visual, IText
     {
-        public Text() : base ("Label") { }
-        public Text(object o) : base ("Label")
+        public Text() : base ("TextBlock") { }
+        public Text(string o) : base ("TextBlock")
         {
-            this.Content (o);
+            this.SetProperty ("Text", o);
         }
     }
 
-    public partial class Input : VisualElement
+    public partial class Input : Visual, IText
     {
         public Input() : base ("TextBox") { }
     }

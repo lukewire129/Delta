@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 
 namespace Delta.WPF
 {
@@ -31,5 +32,8 @@ namespace Delta.WPF
     public interface IContent : IVisual
     {
 
+    }
+    public interface IText : IVisual
+    {
     }
 }

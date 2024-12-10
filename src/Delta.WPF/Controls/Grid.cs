@@ -22,6 +22,7 @@ namespace Delta.WPF
 
             return rows;
         }
+
         public List<ColumnDefinition> GetColumnsDefinitions()
         {
             // ColumnDefinitions 속성에 추가

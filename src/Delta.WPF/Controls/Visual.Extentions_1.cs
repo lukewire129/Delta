@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Drawing;
+using System.Windows;
 
 namespace Delta.WPF
 {
@@ -28,12 +29,33 @@ namespace Delta.WPF
 
         public static IElement Width(this IElement node, double value)
         {
-            return node.SetProperty ("Width", value);
+            return node.SetProperty (nameof (Width), value);
         }
 
         public static IElement Height(this IElement node, double value)
         {
-            return node.SetProperty ("Height", value);
+            return node.SetProperty (nameof (Height), value);
+        }
+
+        public static IElement Margin(this IElement node, double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0)
+        {
+            return node.SetProperty (nameof (Margin), new Thickness(left, top, right, bottom));
+        }
+
+        public static IElement Background(this IElement node, System.Windows.Media.SolidColorBrush brushes)
+        {
+            return node.SetProperty (nameof (Background), brushes);
+        }
+        public static IElement Background(this IElement node, Color color)
+        {
+            return node.SetProperty (nameof (Background), new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (color)));
+        }
+        public static IElement Background(this IElement node, string colorCode)
+        {
+            if (colorCode[0] != '#')
+                throw new System.Exception ("ColorCode Error");
+
+            return node.SetProperty (nameof (Background), new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (ColorTranslator.FromHtml (colorCode))));
         }
 
         public static IElement Start(this IElement node)
