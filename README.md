@@ -12,11 +12,11 @@
     - 복잡한 XAML 대신 직관적인 C# 코드로 UI 계층을 표현함으로써, 유지보수성을 향상시킵니다.
     - 예:
         ```csharp
-        var view = StackPanel(  
+        var view = HStack(  
             Text($"Count: {count}"),
             Button("Increment")
             .OnClick(() => setCount(count + 1))
-        ));
+        );
         ```
 - **Update**
 
@@ -32,7 +32,7 @@ public class CounterComponent : Component
     {
         var (count, setCount) = useState(0);
 
-        return StackPanel(
+        return HStack(
                         Text($"Count: {count}"),
                         Button("Increment")
                             .OnClick(() => setCount(count + 1)),
