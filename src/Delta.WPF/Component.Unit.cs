@@ -1,5 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using Delta.WPF.Enums;
+using System;
+using System.Windows;
 
 namespace Delta.WPF
 {
@@ -33,14 +34,21 @@ namespace Delta.WPF
         {
             return new Text (o);
         }
+
         public static Input Input()
         {
             return new Input ();
         }
-        public static Input Input(TextChangedEventHandler handlerFactory)
+        public static Radio Radio()
         {
-            return new Input (handlerFactory);
+            return new Radio ();
         }
+
+        public static Check Check()
+        {
+            return new Check ();
+        }
+
         public static Scroll Scroll(object o)
         {
             return new Scroll (o);

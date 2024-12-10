@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Delta.WPF.Enums;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,7 +23,7 @@ namespace Delta.WPF
         public Button(object o, RoutedEventHandler handlerFactory) : base ("Button")
         {
             this.Content (o);
-            this.OnClick (handlerFactory);
+            this.AddEvent ("Click", handlerFactory);
         }
     }
 
@@ -65,9 +66,19 @@ namespace Delta.WPF
         {
             this.SetProperty ("VerticalContentAlignment", System.Windows.VerticalAlignment.Center);
         }
-        public Input(TextChangedEventHandler handlerFactory) : base ("TextBox")
+    }
+
+    public partial class Radio : Visual, IText, ICheck, IVisual
+    {
+        public Radio() : base ("RadioButton")
         {
-            this.OnChanged (handlerFactory);
+        }
+    }
+
+    public partial class Check : Visual, IText, ICheck, IVisual
+    {
+        public Check() : base ("CheckBox")
+        {
         }
     }
 }

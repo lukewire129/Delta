@@ -13,9 +13,9 @@ namespace Delta.WPF
         Dictionary<string, object> Properties { get; set; }
         IElement SetProperty(string name, object value);
         public Dictionary<string, Delegate> Events { get; set; }
-        IElement AddEvent(string eventName, Delegate handler);
         bool Equals(object obj);
         public void LoadNodeNumber(int parentId, int myId);
+        IElement AddEvent(string eventName, Delegate handler);
     }
 
     public interface IVisual : IElement
@@ -38,11 +38,17 @@ namespace Delta.WPF
     }
     public interface IInput : IElement
     {
+    }
+    public interface IRadio : IElement
+    {
+
+    }
+    public interface ICheck : IElement
+    {
 
     }
 
     public interface IScroll : IElement
     {
-
     }
 }
