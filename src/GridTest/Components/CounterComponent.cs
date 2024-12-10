@@ -1,5 +1,4 @@
 ﻿using Delta.WPF;
-using Delta.WPF.Enums;
 using System.Drawing;
 using System.Windows.Controls;
 
