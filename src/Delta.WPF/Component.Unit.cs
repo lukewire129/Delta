@@ -12,9 +12,9 @@ namespace Delta.WPF
         {
             return new Button (o);
         }
-        public static Button Button(object o, RoutedEventHandler handlerFactory)
+        public static Button Button(object o, RoutedEventHandler handler)
         {
-            return new Button (o, handlerFactory);
+            return new Button (o, handler);
         }
         public static VStack VStack(params IElement[] nodes)
         {

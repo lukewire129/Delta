@@ -17,10 +17,10 @@ namespace Delta.WPF
         {
             this.Content (o);
         }
-        public Button(object o, RoutedEventHandler handlerFactory) : base ("Button")
+        public Button(object o, RoutedEventHandler handler) : base ("Button")
         {
             this.Content (o);
-            this.AddEvent ("Click", handlerFactory);
+            this.AddEvent ("Click", handler);
         }
     }
 
