@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 
@@ -41,7 +40,6 @@ namespace Delta.WPF
             mainWindow.Content = rootVisual;
             _currentRootVisual = rootVisual;
         }
-
         public void Rebuild()
         {
             Debug.WriteLine ("[Rebuild] Resetting _stateIndex to 0.");

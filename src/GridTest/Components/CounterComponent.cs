@@ -18,7 +18,7 @@ namespace GridTest.Components
 
             return Grid (
                         Rows (Auto, Auto, Auto, Auto, Auto, Auto, Auto),
-                            Button ($"count 1: {count1}", (s, e) => setCount1 (count1 + 1))
+                            Button ($"count1: {count1}", (s, e) => setCount1 (count1 + 1))
                                 .Size(100, 50)
                                 .Start()
                                 .Background("#e8b8FFFF")
@@ -30,7 +30,7 @@ namespace GridTest.Components
 
                             Grid (
                                 Rows (50 ,100, 100),
-                                    Text($"hihi : {count2}")
+                                    Text($"1111 : {count2}")
                                         .FontSize(20)
                                         .FontColor(Color.Red),
 

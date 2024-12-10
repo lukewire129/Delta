@@ -1,6 +1,8 @@
 ﻿using Delta.WPF;
 using GridTest.Components;
 using System.Windows;
+using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace GridTest
 {
@@ -12,7 +14,16 @@ namespace GridTest
             Width = 400;
             Height = 1000;
 
+            HotReloadService.UpdateApplicationEvent += ReloadUI;
             ApplicationRoot.Initialize (new CounterComponent (), this);
+        }
+
+        private void ReloadUI(Type[] obj)
+        {
+            Dispatcher.BeginInvoke (() =>
+            {
+                ApplicationRoot.Instance.Rebuild ();
+            });
         }
     }
 }
