@@ -1,11 +1,18 @@
-﻿using System.Drawing;
+﻿using System;
 using System.Windows;
-using static System.Net.Mime.MediaTypeNames;
-using System.Xml.Linq;
+using System.Windows.Controls;
 
 namespace Delta.WPF
 {
-    public partial class Button : ContentControl, IVisual, IText
+    public partial class Scroll : ContentControl, IScroll, IContent
+    {
+        public Scroll(object o) : base ("ScrollViewer")
+        {
+            this.Content (o);
+        }
+    }
+
+    public partial class Button : ContentControl, IText,IVisual
     {
         public Button() : base ("Button") { }
         public Button(object o) : base ("Button")
@@ -43,7 +50,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Text : Visual, IText
+    public partial class Text : Visual, IText, IVisual
     {
         public Text() : base ("TextBlock") { }
         public Text(string o) : base ("TextBlock")
@@ -52,8 +59,15 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Input : Visual, IText
+    public partial class Input : Visual, IText, IInput, IVisual
     {
-        public Input() : base ("TextBox") { }
+        public Input() : base ("TextBox")
+        {
+            this.SetProperty ("VerticalContentAlignment", System.Windows.VerticalAlignment.Center);
+        }
+        public Input(TextChangedEventHandler handlerFactory) : base ("TextBox")
+        {
+            this.OnChanged (handlerFactory);
+        }
     }
 }

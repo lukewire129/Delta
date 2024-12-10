@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Delta.WPF
 {
@@ -35,6 +36,14 @@ namespace Delta.WPF
         public static Input Input()
         {
             return new Input ();
+        }
+        public static Input Input(TextChangedEventHandler handlerFactory)
+        {
+            return new Input (handlerFactory);
+        }
+        public static Scroll Scroll(object o)
+        {
+            return new Scroll (o);
         }
     }
 }

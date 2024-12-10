@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace Delta.WPF
 {
-    public static partial class Markup
+    public static partial class VisualExtention
     {
         public static IElement Row(this IElement node, int value)
         {

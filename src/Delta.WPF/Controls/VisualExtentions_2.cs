@@ -2,7 +2,7 @@
 
 namespace Delta.WPF
 {
-    public static partial class Markup
+    public static partial class VisualExtention
     {
         public static IElement FontSize<T>(this T node, double size) where T : IText
         {
