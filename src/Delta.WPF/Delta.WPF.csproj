@@ -1,11 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <LangVersion>preview</LangVersion>
+    <!--<LangVersion>latest</LangVersion>-->
+    <Authors>lukewire129</Authors>
   </PropertyGroup>
-
+  
+  <PropertyGroup>
+    <PackageVersion>0.0.2</PackageVersion>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageId>DeltaMVU</PackageId>
+    <Description>WPF CSharp MVU</Description>
+    <PackageProjectUrl>https://github.com/lukewire129/Delta</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lukewire129/Delta</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>lukewire; WPF; React Hook; CSharp Markup;</PackageTags>
+    <Copyright>Copyright © 2024 lukewire129.</Copyright>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
   <ItemGroup>
     <Compile Remove="cc\**" />
     <EmbeddedResource Remove="cc\**" />
