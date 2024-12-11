@@ -36,4 +36,7 @@ namespace Delta.WPF
     public interface IScroll : IVisual
     {
     }
+    public interface IImage : IVisual
+    {
+    }
 }

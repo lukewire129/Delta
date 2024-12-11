@@ -14,7 +14,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Button : ContentControl, IText,IVisual
+    public partial class Button : ContentControl, IText
     {
         public Button() : base ("Button") { }
         public Button(IElement o) : base ("Button")
@@ -57,7 +57,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Text : Visual, IText, IVisual
+    public partial class Text : Visual, IText
     {
         public Text() : base ("TextBlock") { }
         public Text(string o) : base ("TextBlock")
@@ -66,7 +66,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Input : Visual, IText, IInput, IVisual
+    public partial class Input : Visual, IText, IInput
     {
         public Input() : base ("TextBox")
         {
@@ -74,7 +74,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Radio : ContentControl, IText, ICheck, IVisual
+    public partial class Radio : ContentControl, IText, ICheck
     {
         public Radio() : base ("RadioButton")
         {
@@ -89,7 +89,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Check : ContentControl, IText, ICheck, IVisual
+    public partial class Check : ContentControl, IText, ICheck
     {
         public Check() : base ("CheckBox")
         {
@@ -101,6 +101,17 @@ namespace Delta.WPF
         public Check(IElement o) : base ("CheckBox")
         {
             this.Content (o);
+        }
+    }
+    public partial class Img : Visual, IImage
+    {
+        public Img() : base ("Image")
+        {
+        }
+
+        public Img(string path) : base ("Image")
+        {
+            this.Source (path);
         }
     }
 }

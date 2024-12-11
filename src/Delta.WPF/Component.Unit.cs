@@ -64,5 +64,14 @@ namespace Delta.WPF
         {
             return new Scroll (o);
         }
+
+        public static Img Img()
+        {
+            return new Img ();
+        }
+        public static Img Img(string sourcePath)
+        {
+            return new Img(sourcePath);
+        }
     }
 }
