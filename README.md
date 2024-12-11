@@ -45,8 +45,10 @@ public class CounterComponent : Component
 이 예제에서는 useState를 통해 상태를 관리하고, 버튼 클릭 시 새로운 상태를 반영합니다. Delta는 상태 변화를 감지하고, diffing을 통해 변경된 부분만 업데이트합니다.
 
 # 시작하기
-앞으로 제공될 프로젝트 템플릿을 통해, Delta 환경을 쉽게 설정하고 시작할 수 있게 할 예정입니다.
-(현재는 별도의 설정 가이드를 제공하지 않습니다.)
+Template 설치
+```
+dotnet new install DeltaMVU.Template::0.1.0
+```
 
 # 기여하기
 라이브러리에 대한 제안, 버그 제보, 개선사항 등은 언제나 환영합니다.
