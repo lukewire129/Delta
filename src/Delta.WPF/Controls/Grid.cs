@@ -11,7 +11,7 @@ namespace Delta.WPF
         {
         }
 
-        public List<RowDefinition> GetRowsDefinitions()
+        private List<RowDefinition> GetRowsDefinitions()
         {
             // RowDefinitions 속성에 추가
             if (!this.Properties.TryGetValue ("RowDefinitions", out var value) || value is not List<RowDefinition> rows)
@@ -23,7 +23,7 @@ namespace Delta.WPF
             return rows;
         }
 
-        public List<ColumnDefinition> GetColumnsDefinitions()
+        private List<ColumnDefinition> GetColumnsDefinitions()
         {
             // ColumnDefinitions 속성에 추가
             if (!this.Properties.TryGetValue ("ColumnDefinitions", out var value) || value is not List<ColumnDefinition> columns)
@@ -33,6 +33,26 @@ namespace Delta.WPF
             }
 
             return columns;
+        }
+
+        public Grid RowDefinition(params GridLength[] heights)
+        {
+            var rows = this.GetRowsDefinitions ();
+            foreach (var height in heights)
+            {
+                rows.Add (new RowDefinition { Height = height });
+            }
+            return this;
+        }
+
+        public Grid ColumnDefinition(params GridLength[] widths)
+        {
+            var columns = this.GetColumnsDefinitions ();
+            foreach (var width in widths)
+            {
+                columns.Add (new ColumnDefinition { Width = width });
+            }
+            return this;
         }
     }
 }

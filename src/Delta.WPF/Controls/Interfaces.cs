@@ -9,8 +9,6 @@ namespace Delta.WPF
 
     public interface IGrid : IVisual
     {
-        List<System.Windows.Controls.RowDefinition> GetRowsDefinitions();
-        List<System.Windows.Controls.ColumnDefinition> GetColumnsDefinitions();
     }
 
     public interface IContent : IVisual
