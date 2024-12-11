@@ -18,7 +18,7 @@ namespace GridTest.Components
 
             return Grid (
                         Rows (Auto, Auto, Auto, Auto, Auto, Auto, Auto),
-                            Button ($"count1: {count1}", (s, e) => setCount1 (count1 + 1))
+                            Button ($"count111: {count1}", (s, e) => setCount1 (count1 + 1))
                                 .Size(100, 50)
                                 .Start()
                                 .Background("#e8b8FFFF")
@@ -30,7 +30,7 @@ namespace GridTest.Components
 
                             Grid (
                                 Rows (50 ,100, 100),
-                                    Text($"1111 : {count2}")
+                                    Text($"1 : {count2}")
                                         .FontSize(20)
                                         .FontColor(Color.Red),
 
@@ -45,52 +45,52 @@ namespace GridTest.Components
                                         .Row (2)
                             )
                             .Row(2),
-                    
-                            new CounterComponent1 ()
-                                .Row (3),
 
-                           Grid(
-                               Rows(Auto, Auto),
-                                     Text ($"TextChanged : {text}")
-                                            .FontSize (20)
-                                            .FontColor (Color.Red)
-                                            .Row (0),
+                           !check2? new CounterComponent1 ()
+                                .Row (3) : null,
 
-                                    Input()
-                                        .OnTextChanged ((s, e) =>
-                                        {
-                                            if (s is TextBox textBox)
-                                            {
-                                                setText (textBox.Text);
-                                                //Console.WriteLine (textBox.Text);
-                                            }
-                                        })
-                                        .FontColor(Color.Blue)
-                                        .Size(100, 50)
-                                        .Row(1)
-                               )
-                               .Row(4),
+                           //Grid(
+                           //    Rows(Auto, Auto),
+                           //          Text ($"TextChanged : {text}")
+                           //                 .FontSize (20)
+                           //                 .FontColor (Color.Red)
+                           //                 .Row (0),
 
-                            Grid (
-                                Rows (Auto, Auto),
-                                    Text ($"CheckBox : {check}")
-                                        .FontSize (20)
-                                        .FontColor (Color.Red)
-                                        .Row (0),
+                           //         Input()
+                           //             .OnTextChanged ((s, e) =>
+                           //             {
+                           //                 if (s is TextBox textBox)
+                           //                 {
+                           //                     setText (textBox.Text);
+                           //                     //Console.WriteLine (textBox.Text);
+                           //                 }
+                           //             })
+                           //             .FontColor(Color.Blue)
+                           //             .Size(100, 50)
+                           //             .Row(1)
+                           //    )
+                           //    .Row(4),
 
-                                    Check ()
-                                        .OnChanged ((s, e) =>
-                                        {
-                                            if (s is CheckBox checkBox)
-                                            {
-                                                setCheck (checkBox.IsChecked.Value);
-                                            }
-                                        })
-                                        .FontColor (Color.Blue)
-                                        .Size (100, 50)
-                                        .Row (1)
-                               )
-                               .Row (5),
+                           // Grid (
+                           //     Rows (Auto, Auto),
+                           //         Text ($"CheckBox : {check}")
+                           //             .FontSize (20)
+                           //             .FontColor (Color.Red)
+                           //             .Row (0),
+
+                           //         Check ()
+                           //             .OnChanged ((s, e) =>
+                           //             {
+                           //                 if (s is CheckBox checkBox)
+                           //                 {
+                           //                     setCheck (checkBox.IsChecked.Value);
+                           //                 }
+                           //             })
+                           //             .FontColor (Color.Blue)
+                           //             .Size (100, 50)
+                           //             .Row (1)
+                           //    )
+                           //    .Row (5),
                             HStack(
                                     VStack(
                                          Text ($"RadioButton 1 : {check1}")

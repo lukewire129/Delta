@@ -3,13 +3,11 @@ namespace Delta.WPF
 {
     public class ReplaceNodeOperation : DiffOperation
     {
-        public string TargetId { get; }
-        public IElement NewNode { get; }
+        public IElement Node { get; }
 
-        public ReplaceNodeOperation(string targetId, IElement newNode)
+        public ReplaceNodeOperation(IElement newNode)
         {
-            TargetId = targetId;
-            NewNode = newNode;
+            Node = newNode;
         }
     }
 }

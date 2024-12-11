@@ -1,16 +1,16 @@
 {
-    "$schema": "http://json.schemastore.org/template",
-    "author": "Lukewire",
-    "description": "Delta WPF MVU",
-    "classifications": [
-        "WPF"
-    ],
-    "identity": "Delta WPF MVU",
-    "name": "Delta App",
-    "shortName": "Delta",
-    "sourceName": "DeltaTemplate",
-    "tags": {
-        "language": "C#",
-        "type": "project"
-    }
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Lukewire",
+  "description": "Delta WPF MVU",
+  "classifications": [
+    "WPF"
+  ],
+  "identity": "Delta WPF MVU",
+  "name": "Delta App",
+  "shortName": "Delta",
+  "sourceName": "Template.Project",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
 }

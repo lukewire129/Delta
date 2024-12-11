@@ -6,6 +6,7 @@ namespace Delta.WPF
 {
     public interface IElement
     {
+        int ParentId { get; set; }
         string Id { get; set; }
         string Type { get; set; }
         bool TryGetValue(string propertyName, [MaybeNullWhen (false)] out object value);

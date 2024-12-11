@@ -1,8 +1,8 @@
 ﻿using Delta.WPF;
-using Template.Project.Components;
+using DiffingEngineTest.Components;
 using System.Windows;
 
-namespace Template.Project
+namespace DiffingEngineTest
 {
     public class MainWindow : Window
     {

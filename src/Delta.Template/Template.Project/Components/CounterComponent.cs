@@ -1,9 +1,8 @@
 ﻿using Delta.WPF;
-using static Delta.WPF.Control;
 
-namespace DeltaTemplate.Components
+namespace Template.Project.Components
 {
-    public class CounterComponent : HookComponent
+    public class CounterComponent : Component
     {
         public override IVisual Render()
         {

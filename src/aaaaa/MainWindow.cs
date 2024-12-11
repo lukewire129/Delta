@@ -1,8 +1,8 @@
-﻿using Delta.WPF;
-using Template.Project.Components;
+﻿using aaaaa.Components;
+using Delta.WPF;
 using System.Windows;
 
-namespace Template.Project
+namespace aaaaa
 {
     public class MainWindow : Window
     {

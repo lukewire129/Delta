@@ -19,7 +19,7 @@ namespace Delta.WPF
                     // 기존 핸들러 제거
                     operations.Add (new RemoveEventOperation (oldNode, oldEvent));
                 }
-                operations.Add (new ReplaceNodeOperation (oldNode.Id, newNode));
+                operations.Add (new ReplaceNodeOperation (newNode));
                 return operations;
             }
 
@@ -105,12 +105,12 @@ namespace Delta.WPF
 
             foreach (var unmatchedOldChild in unmatchedOldChildren)
             {
-                operations.Add (new RemoveChildOperation (unmatchedOldChild.Id));
+                operations.Add (new RemoveChildOperation (unmatchedOldChild));
             }
 
             foreach (var unmatchedNewChild in unmatchedNewChildren)
             {
-                operations.Add (new AddChildOperation (oldNode.Id, unmatchedNewChild));
+                operations.Add (new AddChildOperation (unmatchedNewChild));
             }
 
             return operations;

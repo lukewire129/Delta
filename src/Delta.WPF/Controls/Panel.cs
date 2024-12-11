@@ -18,7 +18,11 @@ namespace Delta.WPF
             int id = 1;
             foreach (IElement element in child)
             {
-                if (element is Component component)
+                if (element == null)
+                {
+                    continue;
+                }
+                else if (element is Component component)
                 {
                     element.LoadNodeNumber (parentId, id);
                     // 부모에서 자식의 Render 결과를 자동 추가
@@ -29,7 +33,7 @@ namespace Delta.WPF
                     {
                         renderedChild.Properties.Add (item.Key, item.Value);
                     }
-                    renderedChild.LoadNodeNumber(parentId, id);
+                    renderedChild.LoadNodeNumber (parentId, id);
 
                     ChildrenId (id, renderedChild);
                     this.Children.Add (renderedChild);
@@ -38,7 +42,7 @@ namespace Delta.WPF
                 {
                     element.LoadNodeNumber (parentId, id);
 
-                    if(element.Children.Count >0)
+                    if (element.Children.Count > 0)
                     {
                         ChildrenId (id, element);
                     }

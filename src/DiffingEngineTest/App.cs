@@ -1,7 +1,7 @@
 ﻿using Delta.WPF;
 using System.Windows;
 
-namespace Template.Project
+namespace DiffingEngineTest
 {
     public class App : Application
     {

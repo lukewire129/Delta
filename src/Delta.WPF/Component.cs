@@ -9,13 +9,8 @@ namespace Delta.WPF
         private int _stateIndex = 0;
         public Component() : base("Grid")
         {
-            ApplicationRoot.Instance.StateIndexInitialize += () =>
-            {
-                _stateIndex = 0;
-            };
-            var aa = new System.Windows.Controls.TextBlock ();
+            ApplicationRoot.Instance.StateIndexInitialize += stateClear;
         }
-
         public abstract IElement Render();
 
         protected (T state, Action<T> setState) UseState<T>(T initialValue)
@@ -40,10 +35,17 @@ namespace Delta.WPF
             return (state, SetState);
         }
 
+        private void stateClear()
+        {
+            _stateIndex = 0;
+
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
+                ApplicationRoot.Instance.StateIndexInitialize -= stateClear;
                 Debug.WriteLine ("Component disposing...");
                 // 등록된 모든 클린업 호출
                 foreach (var cleanup in _cleanupEffects)

@@ -3,12 +3,10 @@ namespace Delta.WPF
 {
     public class AddChildOperation : DiffOperation
     {
-        public string ParentKey { get; }
         public IElement ChildNode { get; }
 
-        public AddChildOperation(string ParentKey, IElement childNode)
+        public AddChildOperation(IElement childNode)
         {
-            ParentKey = ParentKey;
             ChildNode = childNode;
         }
     }

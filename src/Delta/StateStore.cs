@@ -39,5 +39,10 @@ namespace Delta
         {
             _store.Remove (componentId);
         }
+
+        public void Clear()
+        {
+            _store.Clear ();
+        }
     }
 }

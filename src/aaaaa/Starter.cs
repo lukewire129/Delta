@@ -1,4 +1,4 @@
-﻿namespace Template.Project
+﻿namespace aaaaa
 {
     public class Starter
     {

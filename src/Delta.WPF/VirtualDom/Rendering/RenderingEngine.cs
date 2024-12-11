@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Xml.Linq;
 using Delta.WPF._archive.Controls.Extentions;
 namespace Delta.WPF
 {
@@ -77,11 +78,11 @@ namespace Delta.WPF
         }
         private static void ReplaceNode(FrameworkElement root, ReplaceNodeOperation operation)
         {
-            var targetControl = FindControlById (root, operation.TargetId);
+            var targetControl = FindControlById (root, operation.Node.ParentId.ToString());
 
             if (targetControl == null)
             {
-                Console.WriteLine ($"Control with ID '{operation.TargetId}' not found.");
+                Console.WriteLine ($"Control with ID '{operation.Node.ParentId.ToString ()}' not found.");
                 return;
             }
 
@@ -92,7 +93,7 @@ namespace Delta.WPF
                 {
                     panel.Children.RemoveAt (index);
 
-                    var newElement = CreateElement (operation.NewNode);
+                    var newElement = CreateElement (operation.Node);
                     panel.Children.Insert (index, newElement);
                 }
             }
@@ -101,7 +102,7 @@ namespace Delta.WPF
 
                 if (contentControl.Content == targetControl)
                 {
-                    var newElement = CreateElement (operation.NewNode);
+                    var newElement = CreateElement (operation.Node);
                     contentControl.Content = newElement;
                 }
             }
@@ -109,7 +110,7 @@ namespace Delta.WPF
             {
                 throw new InvalidOperationException ($"Unsupported parent type for ReplaceNode: {targetControl.GetType ().Name}");
             }
-            targetControl.SetUniqueId (operation.NewNode.Id);
+            targetControl.SetUniqueId (operation.Node.Id);
         }
         private static void UpdateProperty(FrameworkElement root, UpdatePropertyOperation operation)
         {
@@ -141,11 +142,11 @@ namespace Delta.WPF
 
         private static void AddChild(FrameworkElement root, AddChildOperation operation)
         {
-            var targetControl = FindControlById (root, operation.ParentKey);
+            var targetControl = FindControlById (root, operation.ChildNode.ParentId.ToString());
 
             if (targetControl == null)
             {
-                Console.WriteLine ($"Control with ID '{operation.ParentKey}' not found.");
+                Console.WriteLine ($"Control with ID '{operation.ChildNode.ParentId}' not found.");
                 return;
             }
 
@@ -184,21 +185,25 @@ namespace Delta.WPF
 
         private static void RemoveChild(FrameworkElement root, RemoveChildOperation operation)
         {
-            var childToRemove = FindControlById (root, operation.TargetId);
+            var childToRemove = FindControlById (root, operation.Target.Id);
 
             if (childToRemove == null)
             {
-                Console.WriteLine ($"Child with ID '{operation.TargetId}' not found.");
+                Console.WriteLine ($"Child with ID '{operation.Target.Id}' not found.");
                 return;
             }
 
             if (LogicalTreeHelper.GetParent (childToRemove) is System.Windows.Controls.Panel panel)
             {
                 panel.Children.Remove (childToRemove);
+                if(operation.Target is Component component)
+                {
+                    component.Dispose ();
+                }
             }
             else
             {
-                Console.WriteLine ($"Parent of child with ID '{operation.TargetId}' is not a Panel.");
+                Console.WriteLine ($"Parent of child with ID '{operation.Target.Id}' is not a Panel.");
             }
         }
 
@@ -209,8 +214,6 @@ namespace Delta.WPF
                 throw new InvalidOperationException ($"Unknown element type: {node.Type}");
 
             var element = (FrameworkElement)Activator.CreateInstance (elementType);
-
-
 
             foreach (var property in node.Properties)
             {
@@ -229,14 +232,16 @@ namespace Delta.WPF
             {
                 if (node.Children != null && node.Children.Count > 0)
                 {
+                    panel.SetUniqueId (node.Id);
                     foreach (var childNode in node.Children)
                     {
                         var childElement = CreateElement (childNode);
                         panel.Children.Add (childElement);
+
+                        childElement.SetUniqueId (childNode.Id);
                     }
                 }
             }
-
             return element;
         }
 

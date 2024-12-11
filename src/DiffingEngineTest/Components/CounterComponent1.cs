@@ -1,13 +1,9 @@
 ﻿using Delta.WPF;
 
-namespace GridTest.Components
+namespace DiffingEngineTest.Components
 {
     public class CounterComponent1 : Component
     {
-        public CounterComponent1()
-        {
-            
-        }
         public override IVisual Render()
         {
             var (count, setCount) = UseState (0);
@@ -22,16 +18,6 @@ namespace GridTest.Components
                         Button ("Comopent Count Reset", (s, e) => setCount (0))
                             .Row (1)
                     );
-        }
-    }
-
-    // TODO : 제네레이터 만들어주는 기능 필요할까?
-
-    public partial class Control
-    {
-        public static IElement CounterComponent1()
-        {
-            return new CounterComponent1 ();
         }
     }
 }

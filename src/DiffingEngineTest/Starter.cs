@@ -1,4 +1,4 @@
-﻿namespace Template.Project
+﻿namespace DiffingEngineTest
 {
     public class Starter
     {

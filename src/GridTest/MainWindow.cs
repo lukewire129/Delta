@@ -1,7 +1,6 @@
 ﻿using Delta.WPF;
 using GridTest.Components;
 using System.Windows;
-using System.Diagnostics;
 using System.Windows.Threading;
 
 namespace GridTest

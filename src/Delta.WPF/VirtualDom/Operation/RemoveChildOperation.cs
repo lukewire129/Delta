@@ -3,11 +3,11 @@ namespace Delta.WPF
 {
     public class RemoveChildOperation : DiffOperation
     {
-        public string TargetId { get; }
+        public IElement Target { get; }
 
-        public RemoveChildOperation(string targetId)
+        public RemoveChildOperation(IElement target)
         {
-            TargetId = targetId;
+            Target = target;
         }
     }
 }

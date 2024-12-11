@@ -1,7 +1,7 @@
 ﻿using Delta.WPF;
 using System.Windows;
 
-namespace Template.Project
+namespace aaaaa
 {
     public class App : Application
     {
