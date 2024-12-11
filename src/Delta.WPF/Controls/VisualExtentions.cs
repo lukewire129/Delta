@@ -3,7 +3,7 @@ namespace Delta.WPF
 {
     public static partial class Markup
     {
-        public static T RowDefinition<T>(this T node, params GridLength[] heights) where T : IGrid
+        public static IElement RowDefinition(this IGrid node, params GridLength[] heights)
         {
             var rows = node.GetRowsDefinitions ();
             foreach (var height in heights)
@@ -13,7 +13,7 @@ namespace Delta.WPF
             return node;
         }
 
-        public static T ColumnDefinition<T>(this T node, params GridLength[] widths) where T : IGrid
+        public static IElement ColumnDefinition(this IGrid node, params GridLength[] widths)
         {
             var columns = node.GetColumnsDefinitions ();
             foreach (var width in widths)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Security.Policy;
 using System.Windows;
 
 namespace Delta.WPF

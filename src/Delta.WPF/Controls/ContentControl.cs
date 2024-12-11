@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Delta.WPF
+﻿namespace Delta.WPF
 {
     public class ContentControl : Visual, IContent
     {
