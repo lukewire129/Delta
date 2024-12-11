@@ -8,11 +8,15 @@ namespace Delta.WPF
         {
             return new Button ();
         }
-        public static Button Button(object o)
+        public static Button Button(IElement o)
         {
             return new Button (o);
         }
         public static Button Button(object o, RoutedEventHandler handler)
+        {
+            return new Button (o, handler);
+        }
+        public static Button Button(IElement o, RoutedEventHandler handler)
         {
             return new Button (o, handler);
         }
@@ -46,8 +50,17 @@ namespace Delta.WPF
         {
             return new Check ();
         }
+        public static Radio Radio(IElement o)
+        {
+            return new Radio (o);
+        }
 
-        public static Scroll Scroll(object o)
+        public static Check Check(IElement o)
+        {
+            return new Check (o);
+        }
+
+        public static Scroll Scroll(IElement o)
         {
             return new Scroll (o);
         }

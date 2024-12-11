@@ -59,28 +59,40 @@ namespace Delta.WPF
             }
 
             // Process children and Grid.Row/Grid.Column properties // Component인 경우엔 Grid로
-            if (node.Children.Count > 0 && element is System.Windows.Controls.Panel panel)
+            if (node.Children.Count > 0)
             {
-                foreach (var childNode in node.Children)
+                if (element is System.Windows.Controls.Panel panel)
                 {
-                    var childElement = Build (childNode);
-
-                    // Apply Grid.Row and Grid.ColumnSystem.NullReferenceException: 'Object reference not set to an instance of an object.'
-                    var attachedProperty = childNode.GetAttachedProperty ();
-                    foreach (var item in attachedProperty)
+                    foreach (var childNode in node.Children)
                     {
-                        childElement.UpdateAttachedProperty(item.Key, item.Value);
-                    }
+                        var childElement = Build (childNode);
 
-                    panel.Children.Add (childElement);
+                        // Apply Grid.Row and Grid.ColumnSystem.NullReferenceException: 'Object reference not set to an instance of an object.'
+                        var attachedProperty = childNode.GetAttachedProperty ();
+                        foreach (var item in attachedProperty)
+                        {
+                            childElement.UpdateAttachedProperty (item.Key, item.Value);
+                        }
+
+                        panel.Children.Add (childElement);
+                    }
                 }
-            }
-            else if(node.GetType ().BaseType.Name == "Component")
-            {
-                var aa = (FrameworkElement)Activator.CreateInstance (node.GetType ());
-                var component = (Component)aa;
-                ApplicationRoot.Components.Add (component);
-                component.Children.Add (component.Render ());
+                else if (element is System.Windows.Controls.ContentControl contentControl)
+                {
+                    foreach (var childNode in node.Children)
+                    {
+                        var childElement = Build (childNode);
+
+                        // Apply Grid.Row and Grid.ColumnSystem.NullReferenceException: 'Object reference not set to an instance of an object.'
+                        var attachedProperty = childNode.GetAttachedProperty ();
+                        foreach (var item in attachedProperty)
+                        {
+                            childElement.UpdateAttachedProperty (item.Key, item.Value);
+                        }
+
+                        contentControl.Content = childElement;
+                    }
+                }
             }
 
             return element;
