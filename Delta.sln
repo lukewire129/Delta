@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta", "Delta\Delta.csproj", "{1BB096B4-B771-4CBA-BF27-C71B3625C209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta", "src\Delta\Delta.csproj", "{1BB096B4-B771-4CBA-BF27-C71B3625C209}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{E3D23626-57FC-497B-BECB-678708C21BF0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{E3D23626-57FC-497B-BECB-678708C21BF0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta.WPF", "Delta.WPF\Delta.WPF.csproj", "{0606E1EB-EF00-4C3E-ABF0-3D9D67C2BE1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta.WPF", "src\Delta.WPF\Delta.WPF.csproj", "{0606E1EB-EF00-4C3E-ABF0-3D9D67C2BE1F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeltaWPFSample", "DeltaWPFSample\DeltaWPFSample.csproj", "{736071D7-49CA-40C6-9E98-5BC6F1B2265C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeltaWPFSample", "samples\DeltaWPFSample\DeltaWPFSample.csproj", "{736071D7-49CA-40C6-9E98-5BC6F1B2265C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GridTest", "GridTest\GridTest.csproj", "{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GridTest", "samples\GridTest\GridTest.csproj", "{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta.Template", "Delta.Template\Delta.Template.csproj", "{352F812F-2401-4F63-9240-2C2DF1951739}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delta.Template", "src\Delta.Template\Delta.Template.csproj", "{352F812F-2401-4F63-9240-2C2DF1951739}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffingEngineTest", "DiffingEngineTest\DiffingEngineTest.csproj", "{B8DDCBD6-F7C4-4C38-B433-C0F18FB0C513}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiffingEngineTest", "samples\DiffingEngineTest\DiffingEngineTest.csproj", "{B8DDCBD6-F7C4-4C38-B433-C0F18FB0C513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentControlChildrenTest", "ContentControlChildrenTest\ContentControlChildrenTest.csproj", "{727FE581-AA80-44F5-B8EF-39E92DA28391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentControlChildrenTest", "samples\ContentControlChildrenTest\ContentControlChildrenTest.csproj", "{727FE581-AA80-44F5-B8EF-39E92DA28391}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
