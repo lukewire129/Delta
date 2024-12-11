@@ -47,7 +47,7 @@ public class CounterComponent : Component
 # 시작하기
 Template 설치
 ```
-dotnet new install DeltaMVU.Template::0.1.0
+dotnet new install DeltaMVU.Template
 ```
 
 # 기여하기
