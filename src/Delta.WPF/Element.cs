@@ -7,7 +7,7 @@ namespace Delta.WPF
 {
     public class Element : FrameworkElement, IElement
     {
-        public int ParentId { get; set; } = 0;
+        public string ParentId { get; set; } = "0";
         public string Id { get; set; } = "0";
         public string Type { get; set; }
         public List<IElement> Children { get; set; } = new List<IElement>();
@@ -27,7 +27,7 @@ namespace Delta.WPF
             return false;
         }
 
-        public void LoadNodeNumber(int parentId, int myId)
+        public void LoadNodeNumber(string parentId, int myId)
         {
             ParentId = parentId;
             this.Id = $"{parentId}_{myId}";

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Xml.Linq;
 
 namespace Delta.WPF
 {
@@ -8,9 +9,9 @@ namespace Delta.WPF
         {
             return new Button ();
         }
-        public static Button Button(IElement o)
+        public static Button Button(IElement element)
         {
-            return new Button (o);
+            return new Button (element);
         }
         public static Button Button(object o, RoutedEventHandler handler)
         {
@@ -50,19 +51,28 @@ namespace Delta.WPF
         {
             return new Check ();
         }
-        public static Radio Radio(IElement o)
+        public static Radio Radio(object o)
         {
             return new Radio (o);
         }
 
-        public static Check Check(IElement o)
+        public static Check Check(object o)
         {
             return new Check (o);
         }
-
-        public static Scroll Scroll(IElement o)
+        public static Radio Radio(IElement element)
         {
-            return new Scroll (o);
+            return new Radio (element);
+        }
+
+        public static Check Check(IElement element)
+        {
+            return new Check (element);
+        }
+
+        public static Scroll Scroll(IElement element)
+        {
+            return new Scroll (element);
         }
 
         public static Img Img()

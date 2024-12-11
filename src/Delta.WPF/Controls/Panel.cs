@@ -14,7 +14,7 @@ namespace Delta.WPF
 
         public void AddChild(IElement[] child)
         {
-            int parentId = this.ParentId;
+            string parentId = this.ParentId;
             int id = 1;
             foreach (IElement element in child)
             {
@@ -36,7 +36,7 @@ namespace Delta.WPF
                     }
                     renderedChild.LoadNodeNumber (parentId, id);
 
-                    ChildrenId (id, renderedChild);
+                    ChildrenId (id.ToString(), renderedChild);
                     this.Children.Add (renderedChild);
                 }
                 else
@@ -45,7 +45,7 @@ namespace Delta.WPF
 
                     if (element.Children.Count > 0)
                     {
-                        ChildrenId (id, element);
+                        ChildrenId (id.ToString (), element);
                     }
                     this.Children.Add (element);
                 }
@@ -53,12 +53,14 @@ namespace Delta.WPF
             }
         }
 
-        private void ChildrenId(int parentId, IElement element)
+        private void ChildrenId(string parentId, IElement element)
         {
             int id = 1;
             foreach (var children in element.Children)
             {
-                children.LoadNodeNumber (parentId, id++);
+                children.LoadNodeNumber (parentId, id);
+                ChildrenId (children.Id, children);
+                id++;
             }
         }
     }

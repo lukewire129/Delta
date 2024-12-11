@@ -1,11 +1,14 @@
-﻿namespace Delta.WPF
+﻿using System;
+
+namespace Delta.WPF
 {
     public class ContentControl : Visual, IContent
     {
         public ContentControl(string type) : base(type) { }
-        public IElement Content(IElement o)
+        public IElement Content(IElement element)
         {
-            this.Children.Add (o);
+            element.LoadNodeNumber (this.Id, 1);
+            this.Children.Add (element);
             return this;
         }
         public IElement Content(object o)

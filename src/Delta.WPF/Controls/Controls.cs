@@ -4,9 +4,9 @@ namespace Delta.WPF
 {
     public partial class Scroll : ContentControl, IScroll, IContent
     {
-        public Scroll(IElement o) : base ("ScrollViewer")
+        public Scroll(IElement element) : base ("ScrollViewer")
         {
-            this.Content (o);
+            this.Content (element);
         }
         public Scroll(object o) : base ("ScrollViewer")
         {
@@ -17,18 +17,22 @@ namespace Delta.WPF
     public partial class Button : ContentControl, IText
     {
         public Button() : base ("Button") { }
-        public Button(IElement o) : base ("Button")
+        public Button(object o) : base ("Button")
         {
             this.Content (o);
+        }
+        public Button(IElement element) : base ("Button")
+        {
+            this.Content (element);
         }
         public Button(object o, RoutedEventHandler handler) : base ("Button")
         {
             this.Content (o);
             this.AddEvent ("Click", handler);
         }
-        public Button(IElement o, RoutedEventHandler handler) : base ("Button")
+        public Button(IElement element, RoutedEventHandler handler) : base ("Button")
         {
-            this.Content (o);
+            this.Content (element);
             this.AddEvent ("Click", handler);
         }
     }
@@ -83,9 +87,9 @@ namespace Delta.WPF
         {
             this.Content (o);
         }
-        public Radio(IElement o) : base ("RadioButton")
+        public Radio(IElement element) : base ("RadioButton")
         {
-            this.Content (o);
+            this.Content (element);
         }
     }
 
@@ -98,9 +102,9 @@ namespace Delta.WPF
         {
             this.Content (o);
         }
-        public Check(IElement o) : base ("CheckBox")
+        public Check(IElement element) : base ("CheckBox")
         {
-            this.Content (o);
+            this.Content (element);
         }
     }
     public partial class Img : Visual, IImage
