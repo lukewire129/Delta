@@ -78,8 +78,8 @@ namespace Delta.WPF
             else if(node.GetType ().BaseType.Name == "Component")
             {
                 var aa = (FrameworkElement)Activator.CreateInstance (node.GetType ());
-
                 var component = (Component)aa;
+                ApplicationRoot.Components.Add (component);
                 component.Children.Add (component.Render ());
             }
 

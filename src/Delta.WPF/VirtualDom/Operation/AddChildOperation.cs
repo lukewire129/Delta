@@ -1,5 +1,4 @@
-﻿using Delta;
-namespace Delta.WPF
+﻿namespace Delta.WPF
 {
     public class AddChildOperation : DiffOperation
     {
@@ -7,6 +6,7 @@ namespace Delta.WPF
 
         public AddChildOperation(IElement childNode)
         {
+            this.type = Enums.DiffOperationType.AddChild;
             ChildNode = childNode;
         }
     }

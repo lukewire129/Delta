@@ -25,6 +25,7 @@ namespace Delta.WPF
                 else if (element is Component component)
                 {
                     element.LoadNodeNumber (parentId, id);
+                    ApplicationRoot.Components.Add (component);
                     // 부모에서 자식의 Render 결과를 자동 추가
                     var renderedChild = component.Render ();
 

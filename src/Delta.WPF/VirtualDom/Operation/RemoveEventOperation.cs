@@ -9,6 +9,7 @@ namespace Delta.WPF
         public KeyValuePair<string, Delegate> Event { get; }
         public RemoveEventOperation(IElement oldNode, KeyValuePair<string, Delegate> eventd)
         {
+            this.type = Enums.DiffOperationType.RemoveEvent;
             OldNode = oldNode;
             Event = eventd;
         }
@@ -18,6 +19,8 @@ namespace Delta.WPF
     {
         public AddEventOperation(IElement newNode, KeyValuePair<string, Delegate> eventd)
         {
+            this.type = Enums.DiffOperationType.AddEvent;
+
             NewNode = newNode;
             Event = eventd;
         }

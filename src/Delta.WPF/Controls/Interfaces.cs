@@ -1,23 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
 
 namespace Delta.WPF
 {
-    public interface IElement
-    {
-        int ParentId { get; set; }
-        string Id { get; set; }
-        string Type { get; set; }
-        bool TryGetValue(string propertyName, [MaybeNullWhen (false)] out object value);
-        public List<IElement> Children { get; set; }
-        Dictionary<string, object> Properties { get; set; }
-        IElement SetProperty(string name, object value);
-        public Dictionary<string, Delegate> Events { get; set; }
-        bool Equals(object obj);
-        public void LoadNodeNumber(int parentId, int myId);
-        IElement AddEvent(string eventName, Delegate handler);
-    }
 
     public interface IVisual : IElement
     {
@@ -34,22 +18,22 @@ namespace Delta.WPF
 
     }
 
-    public interface IText : IElement
+    public interface IText : IVisual
     {
     }
-    public interface IInput : IElement
+    public interface IInput : IVisual
     {
     }
-    public interface IRadio : IElement
-    {
-
-    }
-    public interface ICheck : IElement
+    public interface IRadio : IVisual
     {
 
     }
+    public interface ICheck : IVisual
+    {
 
-    public interface IScroll : IElement
+    }
+
+    public interface IScroll : IVisual
     {
     }
 }

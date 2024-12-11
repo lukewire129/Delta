@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Security.Policy;
+using System.Windows;
 
 namespace Delta.WPF
 {
@@ -9,7 +11,8 @@ namespace Delta.WPF
         private int _stateIndex = 0;
         public Component() : base("Grid")
         {
-            ApplicationRoot.Instance.StateIndexInitialize += stateClear;
+            WeakEventManager<ApplicationRoot, EventArgs>
+                .AddHandler (ApplicationRoot.Instance, nameof (ApplicationRoot.StateIndexInitialize), OnEvent);
         }
         public abstract IElement Render();
 
@@ -35,17 +38,15 @@ namespace Delta.WPF
             return (state, SetState);
         }
 
-        private void stateClear()
+        private void OnEvent(object sender, EventArgs e)
         {
             _stateIndex = 0;
-
         }
 
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
-                ApplicationRoot.Instance.StateIndexInitialize -= stateClear;
                 Debug.WriteLine ("Component disposing...");
                 // 등록된 모든 클린업 호출
                 foreach (var cleanup in _cleanupEffects)

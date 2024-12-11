@@ -10,6 +10,7 @@ namespace Delta.WPF
 
         public UpdatePropertyOperation(string targetId, string newId, string propertyName, object newValue)
         {
+            this.type = Enums.DiffOperationType.UpdateProperty;
             TargetId = targetId;
             NewId = newId;
             PropertyName = propertyName;

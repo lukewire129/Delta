@@ -7,6 +7,7 @@ namespace Delta.WPF
 
         public RemoveChildOperation(IElement target)
         {
+            this.type = Enums.DiffOperationType.RemoveChild;
             Target = target;
         }
     }

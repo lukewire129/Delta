@@ -8,6 +8,8 @@ namespace Delta.WPF
 
         public RemovePropertyOperation(string targetId, string propertyName)
         {
+            this.type = Enums.DiffOperationType.RemoveEvent;
+
             TargetId = targetId;
             PropertyName = propertyName;
         }

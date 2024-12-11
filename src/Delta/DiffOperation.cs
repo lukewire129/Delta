@@ -1,4 +1,8 @@
-﻿namespace Delta
+﻿using Delta.Enums;
+
+namespace Delta
 {
-    public class DiffOperation { }
+    public class DiffOperation {
+        public DiffOperationType type { get; set; }
+    }
 }

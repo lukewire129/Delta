@@ -1,5 +1,4 @@
-﻿using Delta;
-namespace Delta.WPF
+﻿namespace Delta.WPF
 {
     public class ReplaceNodeOperation : DiffOperation
     {
@@ -7,6 +6,7 @@ namespace Delta.WPF
 
         public ReplaceNodeOperation(IElement newNode)
         {
+            this.type = Enums.DiffOperationType.ReplaceNode;
             Node = newNode;
         }
     }
