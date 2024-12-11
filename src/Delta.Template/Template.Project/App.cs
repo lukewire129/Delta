@@ -1,5 +1,4 @@
-﻿using Delta.WPF;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Template.Project
 {
