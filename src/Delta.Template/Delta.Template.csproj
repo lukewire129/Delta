@@ -8,7 +8,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.2.0</PackageVersion>
     <PackageId>DeltaMVU.Template</PackageId>
     <Title>DeltaMVU Template</Title>
     <Description>DeltaMVU Template</Description>
