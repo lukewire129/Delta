@@ -93,6 +93,22 @@ namespace Delta.WPF
                         contentControl.Content = childElement;
                     }
                 }
+                else if (element is System.Windows.Controls.Border borderControl)
+                {
+                    foreach (var childNode in node.Children)
+                    {
+                        var childElement = Build (childNode);
+
+                        // Apply Grid.Row and Grid.ColumnSystem.NullReferenceException: 'Object reference not set to an instance of an object.'
+                        var attachedProperty = childNode.GetAttachedProperty ();
+                        foreach (var item in attachedProperty)
+                        {
+                            childElement.UpdateAttachedProperty (item.Key, item.Value);
+                        }
+
+                        borderControl.Child = childElement;
+                    }
+                }
             }
 
             return element;

@@ -99,11 +99,18 @@ namespace Delta.WPF
             }
             else if (LogicalTreeHelper.GetParent (targetControl) is System.Windows.Controls.ContentControl contentControl)
             {
-
                 if (contentControl.Content == targetControl)
                 {
                     var newElement = CreateElement (operation.Node);
                     contentControl.Content = newElement;
+                }
+            }
+            else if (LogicalTreeHelper.GetParent (targetControl) is System.Windows.Controls.Border borderControl)
+            {
+                if (borderControl.Child == targetControl)
+                {
+                    var newElement = CreateElement (operation.Node);
+                    borderControl.Child = newElement;
                 }
             }
             else
