@@ -111,6 +111,13 @@ namespace Delta.WPF
             foreach (var unmatchedNewChild in unmatchedNewChildren)
             {
                 operations.Add (new AddChildOperation (unmatchedNewChild));
+                foreach (var children in unmatchedNewChild.Children)
+                {
+                    foreach (var newEvent in children.Events)
+                    {
+                        operations.Add (new AddEventOperation (children, newEvent));
+                    }
+                }
             }
 
             return operations;

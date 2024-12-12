@@ -1,5 +1,4 @@
-﻿#if DEBUG
-using System;
+﻿using System;
 
 [assembly: System.Reflection.Metadata.MetadataUpdateHandlerAttribute (typeof (Delta.WPF.HotReloadService))]
 namespace Delta.WPF
@@ -17,4 +16,3 @@ namespace Delta.WPF
         }
     }
 }
-#endif
