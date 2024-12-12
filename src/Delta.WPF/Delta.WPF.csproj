@@ -4,13 +4,13 @@
     <TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <LangVersion>preview</LangVersion>
-    <!--<LangVersion>latest</LangVersion>-->
+    <!--<LangVersion>preview</LangVersion>-->
+    <LangVersion>latest</LangVersion>
     <Authors>lukewire129</Authors>
   </PropertyGroup>
   
   <PropertyGroup>
-    <PackageVersion>0.0.3</PackageVersion>
+    <PackageVersion>0.0.5</PackageVersion>
     <EnablePackageValidation>true</EnablePackageValidation>
     <PackageId>DeltaMVU</PackageId>
     <Description>WPF CSharp MVU</Description>
@@ -42,10 +42,6 @@
     <Compile Remove="Text.cs" />
     <Compile Remove="VisualNode.cs" />
     <Compile Remove="VStack.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Delta\Delta.csproj" />
   </ItemGroup>
 
 </Project>

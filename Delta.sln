@@ -19,9 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiffingEngineTest", "sample
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentControlChildrenTest", "samples\ContentControlChildrenTest\ContentControlChildrenTest.csproj", "{727FE581-AA80-44F5-B8EF-39E92DA28391}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Project", "src\Delta.Template\Template.Project\Template.Project.csproj", "{741DD60B-D738-4D7A-B7FC-E9E9279998CD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorderTest", "samples\BorderTest\BorderTest.csproj", "{15AE229C-8729-4F81-9DDB-28A18171C80A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BorderTest", "samples\BorderTest\BorderTest.csproj", "{15AE229C-8729-4F81-9DDB-28A18171C80A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +55,6 @@ Global
 		{727FE581-AA80-44F5-B8EF-39E92DA28391}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{727FE581-AA80-44F5-B8EF-39E92DA28391}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{727FE581-AA80-44F5-B8EF-39E92DA28391}.Release|Any CPU.Build.0 = Release|Any CPU
-		{741DD60B-D738-4D7A-B7FC-E9E9279998CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{741DD60B-D738-4D7A-B7FC-E9E9279998CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{741DD60B-D738-4D7A-B7FC-E9E9279998CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{741DD60B-D738-4D7A-B7FC-E9E9279998CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15AE229C-8729-4F81-9DDB-28A18171C80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15AE229C-8729-4F81-9DDB-28A18171C80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15AE229C-8729-4F81-9DDB-28A18171C80A}.Release|Any CPU.ActiveCfg = Release|Any CPU

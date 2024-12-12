@@ -12,8 +12,9 @@ namespace GridTest
             Title = "MVU Application";
             Width = 400;
             Height = 1000;
-
-            HotReloadService.UpdateApplicationEvent += ReloadUI;
+            #if DEBUG
+                HotReloadService.UpdateApplicationEvent += ReloadUI;
+            #endif
             ApplicationRoot.Initialize (new CounterComponent (), this);
         }
 
