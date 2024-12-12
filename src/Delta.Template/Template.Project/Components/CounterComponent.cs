@@ -1,4 +1,5 @@
 ﻿using Delta.WPF;
+using Base = System.Windows.Controls;
 
 namespace Template.Project.Components
 {

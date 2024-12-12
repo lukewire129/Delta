@@ -17,12 +17,5 @@ namespace Delta.WPF
             }
             return node.AddEvent ("TextChanged", handlerFactory);
         }
-        public static IElement OnChanged<T>(this T node, RoutedEventHandler handlerFactory) where T : ICheck
-        {
-            node.AddEvent ("Checked", handlerFactory);
-            node.AddEvent ("Unchecked", handlerFactory);
-
-            return node;
-        }
     }
 }

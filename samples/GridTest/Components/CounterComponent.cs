@@ -1,6 +1,6 @@
 ﻿using Delta.WPF;
 using System.Drawing;
-using System.Windows.Controls;
+using Base = System.Windows.Controls;
 
 namespace GridTest.Components
 {
@@ -48,7 +48,7 @@ namespace GridTest.Components
                             .Row (2),
 
                            !check3 ? new CounterComponent1 ().Row (3) :
-                                    new CounterComponent2 ().Row (3),
+                                     new CounterComponent2 ().Row (3),
 
                             //Grid(
                             //    Rows(Auto, Auto),
@@ -106,26 +106,26 @@ namespace GridTest.Components
 
                                     VStack (
                                         Radio ()
-                                        .OnChanged ((s, e) =>
-                                        {
-                                            if (s is RadioButton radio)
+                                            .OnChanged ((s, e) =>
                                             {
-                                                setCheck1 (radio.IsChecked.Value);
-                                            }
-                                        })
-                                        .FontColor (Color.Blue)
-                                        .Size (100, 50),
+                                                if (s is Base.RadioButton radio)
+                                                {
+                                                    setCheck1 (radio.IsChecked.Value);
+                                                }
+                                            })
+                                            .FontColor (Color.Blue)
+                                            .Size (100, 50),
 
                                         Radio ()
-                                        .OnChanged ((s, e) =>
-                                        {
-                                            if (s is RadioButton radio)
+                                            .OnChanged ((s, e) =>
                                             {
-                                                setCheck3 (radio.IsChecked.Value);
-                                            }
-                                        })
-                                        .FontColor (Color.Blue)
-                                        .Size (100, 50)
+                                                if (s is Base.RadioButton radio)
+                                                {
+                                                    setCheck3 (radio.IsChecked.Value);
+                                                }
+                                            })
+                                            .FontColor (Color.Blue)
+                                            .Size (100, 50)
                                     )
                                )
                                .Row (6)
