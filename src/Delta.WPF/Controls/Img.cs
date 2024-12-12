@@ -5,6 +5,10 @@ using System.Windows.Media.Imaging;
 
 namespace Delta.WPF
 {
+    public interface IImage : IVisual
+    {
+    }
+
     public abstract partial class Component
     {
         public static Img Img()

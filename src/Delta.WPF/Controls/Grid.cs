@@ -3,6 +3,11 @@ using System.Windows.Controls;
 
 namespace Delta.WPF
 {
+
+    public interface IGrid : IVisual
+    {
+    }
+
     public abstract partial class Component
     {
         public static IGrid Grid()

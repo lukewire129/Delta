@@ -2,7 +2,8 @@
 
 namespace Delta.WPF
 {
-    public partial class Scroll : ContentControl, IScroll, IContent
+  
+    public partial class Scroll : ContentControl, IScroll
     {
         public Scroll(IElement element) : base ("ScrollViewer")
         {
@@ -14,7 +15,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Button : ContentControl, IText
+    public partial class Button : ContentControl, IFont
     {
         public Button() : base ("Button") { }
         public Button(object o) : base ("Button")
@@ -60,7 +61,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Text : Visual, IText
+    public partial class Text : Visual, IFont
     {
         public Text() : base ("TextBlock") { }
         public Text(string o) : base ("TextBlock")
@@ -69,7 +70,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Input : Visual, IText, IInput
+    public partial class Input : Visual, IFont, IInput
     {
         public Input() : base ("TextBox")
         {

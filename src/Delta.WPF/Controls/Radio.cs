@@ -2,6 +2,10 @@
 
 namespace Delta.WPF
 {
+    public interface IRadio : IVisual
+    {
+
+    }
     public abstract partial class Component
     {
         public static Radio Radio()
@@ -17,7 +21,7 @@ namespace Delta.WPF
             return new Radio (element);
         }
     }
-    public partial class Radio : ContentControl, IText, IRadio
+    public partial class Radio : ContentControl, IFont, IRadio
     {
         public Radio() : base ("RadioButton")
         {
@@ -37,6 +41,7 @@ namespace Delta.WPF
         public static T OnChanged<T>(this T node, RoutedEventHandler handlerFactory) where T : IRadio
         {
             node.AddEvent ("Checked", handlerFactory);
+            node.AddEvent ("Unchecked", handlerFactory);
 
             return node;
         }

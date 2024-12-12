@@ -4,19 +4,37 @@ namespace Delta.WPF
 {
     public static partial class VisualExtention
     {
-        public static IElement FontSize<T>(this T node, double size) where T : IText => node.SetProperty (nameof (FontSize), size);
-        public static IElement FontFamily<T>(this T node, object content) where T : IText => node.SetProperty (nameof (FontFamily), content);
+        public static T FontSize<T>(this T node, double size) where T : IFont
+        {
+            node.SetProperty (nameof (FontSize), size);
+            return node;
+        }
+        public static T FontFamily<T>(this T node, object content) where T : IFont
+        {
+            node.SetProperty (nameof (FontFamily), content);
+            return node;
+        }
 
-        public static IElement FontColor<T>(this T node, System.Windows.Media.SolidColorBrush brushes) where T : IText => node.SetProperty ("Foreground", brushes);
+        public static T FontColor<T>(this T node, System.Windows.Media.SolidColorBrush brushes) where T : IFont
+        {
+            node.SetProperty ("Foreground", brushes);
+            return node;
+        }
 
-        public static IElement FontColor(this IElement node, Color color) => node.SetProperty ("Foreground", new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (color)));
+        public static T FontColor<T>(this T node, Color color) where T : IFont
+        {
+            node.SetProperty ("Foreground", new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (color)));
+            return node;
+        }
 
-        public static IElement FontColor(this IElement node, string colorCode)
+        public static T FontColor<T>(this T node, string colorCode) where T : IFont
         {
             if (colorCode[0] != '#')
                 throw new System.Exception ("ColorCode Error");
 
-            return node.SetProperty ("Foreground", new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (ColorTranslator.FromHtml (colorCode))));
+            node.SetProperty ("Foreground", new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (ColorTranslator.FromHtml (colorCode))));
+
+            return node;
         }
     }
 }

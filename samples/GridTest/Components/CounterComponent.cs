@@ -114,6 +114,7 @@ namespace GridTest.Components
                                                 }
                                             })
                                             .FontColor (Color.Blue)
+                                            .FontSize(10)
                                             .Size (100, 50),
 
                                         Radio ()

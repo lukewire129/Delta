@@ -25,6 +25,10 @@ namespace Delta.WPF
             void SetState(T updater)
             {
                 Debug.WriteLine ($"SetState called for index {index}. New value: {updater}");
+
+                var state = _stateStore.GetOrCreateState (Id, index, initialValue);
+                if (state.Equals(updater))
+                    return;
                 _stateStore.UpdateState (Id, index, updater);
 
 

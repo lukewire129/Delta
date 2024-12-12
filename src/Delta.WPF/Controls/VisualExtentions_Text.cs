@@ -4,33 +4,40 @@ namespace Delta.WPF
 {
     public static partial class VisualExtention
     {
-        public static IElement TextStart<T>(this T node) where T : IInput
+        public static T TextStart<T>(this T node) where T : IInput
         {
-            return node.SetProperty ("HorizontalContentAlignment", HorizontalAlignment.Left);
+            node.SetProperty ("HorizontalContentAlignment", HorizontalAlignment.Left);
+            return node;
         }
-        public static IElement TextHCenter<T>(this T node) where T : IInput
+        public static T TextHCenter<T>(this T node) where T : IInput
         {
-            return node.SetProperty ("HorizontalContentAlignment", HorizontalAlignment.Center);
+            node.SetProperty ("HorizontalContentAlignment", HorizontalAlignment.Center);
+            return node;
         }
-        public static IElement TextEnd<T>(this T node) where T : IInput
+        public static T TextEnd<T>(this T node) where T : IInput
         {
-            return node.SetProperty ("HorizontalContentAlignment", HorizontalAlignment.Right);
+            node.SetProperty ("HorizontalContentAlignment", HorizontalAlignment.Right);
+            return node;
         }
-        public static IElement TextTop<T>(this T node) where T : IInput
+        public static T TextTop<T>(this T node) where T : IInput
         {
-            return node.SetProperty ("VerticalContentAlignment", VerticalAlignment.Top);
+            node.SetProperty ("VerticalContentAlignment", VerticalAlignment.Top);
+            return node;
         }
-        public static IElement TextVCenter<T>(this T node) where T : IInput
+        public static T TextVCenter<T>(this T node) where T : IInput
         {
-            return node.SetProperty ("VerticalContentAlignment", VerticalAlignment.Center);
+            node.SetProperty ("VerticalContentAlignment", VerticalAlignment.Center);
+            return node;
         }
-        public static IElement TextBottom<T>(this T node) where T : IInput
+        public static T TextBottom<T>(this T node) where T : IInput
         {
-            return node.SetProperty ("VerticalContentAlignment", VerticalAlignment.Bottom);
+            node.SetProperty ("VerticalContentAlignment", VerticalAlignment.Bottom);
+            return node;
         }
-        public static IElement TextCenter<T>(this T node) where T : IInput
+        public static T TextCenter<T>(this T node) where T : IInput
         {
-            return node.HCenter ().VCenter ();
+            node.HCenter ().VCenter ();
+            return node;
         }
     }
 }

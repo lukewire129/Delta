@@ -5,86 +5,105 @@ namespace Delta.WPF
 {
     public static partial class VisualExtention
     {
-        public static IElement Row(this IElement node, int value)
+        public static T Row<T>(this T node, int value) where T  : IElement
         {
-            return node.SetProperty ("Grid.Row", value);
+            node.SetProperty ("Grid.Row", value);
+            return node;
         }
-        public static IElement Column(this IElement node, int value)
+        public static T Column<T>(this T node, int value) where T : IElement
         {
-            return node.SetProperty ("Grid.Column", value);
+            node.SetProperty ("Grid.Column", value);
+            return node;
         }
-        public static IElement RowSpan(this IElement node, int value)
+        public static T RowSpan<T>(this T node, int value) where T : IElement
         {
-            return node.SetProperty ("Grid.RowSpan", value);
+            node.SetProperty ("Grid.RowSpan", value);
+            return node;
         }
-        public static IElement ColumnSpan(this IElement node, int value)
+        public static T ColumnSpan<T>(this T node, int value) where T : IElement
         {
-            return node.SetProperty ("Grid.ColumnSpan", value);
+            node.SetProperty ("Grid.ColumnSpan", value);
+            return node;
         }
-        public static IElement Size(this IElement node, double width = 0.0, double height = 0.0)
+        public static T Size<T>(this T node, double width = 0.0, double height = 0.0) where T : IElement
         {
-            return node.Width (width)
-                       .Height(height);
-        }
-
-        public static IElement Width(this IElement node, double value)
-        {
-            return node.SetProperty (nameof (Width), value);
-        }
-
-        public static IElement Height(this IElement node, double value)
-        {
-            return node.SetProperty (nameof (Height), value);
+            node.Width (width)
+                .Height(height);
+            return node;
         }
 
-        public static IElement Margin(this IElement node, double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0)
+        public static T Width<T>(this T node, double value) where T : IElement
         {
-            return node.SetProperty (nameof (Margin), new Thickness(left, top, right, bottom));
+            node.SetProperty (nameof (Width), value);
+            return node;
         }
 
-        public static IElement Background(this IElement node, System.Windows.Media.SolidColorBrush brushes)
+        public static T Height<T>(this T node, double value) where T : IElement
         {
-            return node.SetProperty (nameof (Background), brushes);
+            node.SetProperty (nameof (Height), value);
+            return node;
         }
-        public static IElement Background(this IElement node, Color color)
+
+        public static T Margin<T>(this T node, double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0) where T : IElement
         {
-            return node.SetProperty (nameof (Background), new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (color)));
+            node.SetProperty (nameof (Margin), new Thickness(left, top, right, bottom));
+            return node;
         }
-        public static IElement Background(this IElement node, string colorCode)
+
+        public static T Background<T>(this T node, System.Windows.Media.SolidColorBrush brushes) where T : IElement
+        {
+            node.SetProperty (nameof (Background), brushes);
+            return node;
+        }
+        public static T Background<T>(this T node, Color color) where T : IElement
+        {
+            node.SetProperty (nameof (Background), new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (color)));
+            return node;
+        }
+        public static T Background<T>(this T node, string colorCode) where T : IElement
         {
             if (colorCode[0] != '#')
                 throw new System.Exception ("ColorCode Error");
 
-            return node.SetProperty (nameof (Background), new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (ColorTranslator.FromHtml (colorCode))));
+            node.SetProperty (nameof (Background), new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (ColorTranslator.FromHtml (colorCode))));
+
+            return node;
         }
 
-        public static IElement Start(this IElement node)
+        public static T Start<T>(this T node) where T : IElement
         {
-            return node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Left);
+            node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Left);
+            return node;
         }
-        public static IElement HCenter(this IElement node)
+        public static T HCenter<T>(this T node) where T : IElement
         {
-            return node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Center);
+            node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Center);
+            return node;
         }
-        public static IElement End(this IElement node)
+        public static T End<T>(this T node) where T : IElement
         {
-            return node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Right);
+            node.SetProperty ("HorizontalAlignment", HorizontalAlignment.Right);
+            return node;
         }
-        public static IElement Top(this IElement node)
+        public static T Top<T>(this T node) where T : IElement
         {
-            return node.SetProperty ("VerticalAlignment", VerticalAlignment.Top);
+            node.SetProperty ("VerticalAlignment", VerticalAlignment.Top);
+            return node;
         }
-        public static IElement VCenter(this IElement node)
+        public static T VCenter<T>(this T node) where T : IElement
         {
-            return node.SetProperty ("VerticalAlignment", VerticalAlignment.Center);
+            node.SetProperty ("VerticalAlignment", VerticalAlignment.Center);
+            return node;
         }
-        public static IElement Bottom(this IElement node)
+        public static T Bottom<T>(this T node) where T : IElement
         {
-            return node.SetProperty ("VerticalAlignment", VerticalAlignment.Bottom);
+            node.SetProperty ("VerticalAlignment", VerticalAlignment.Bottom);
+            return node;
         }
-        public static IElement Center(this IElement node)
+        public static T Center<T>(this T node) where T : IElement
         {
-            return node.HCenter ().VCenter ();
+            node.HCenter ().VCenter ();
+            return node;
         }
     }
 }

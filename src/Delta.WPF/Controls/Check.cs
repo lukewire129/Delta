@@ -2,6 +2,11 @@
 
 namespace Delta.WPF
 {
+    public interface ICheck : IVisual
+    {
+
+    }
+
     public abstract partial class Component
     {
         public static Check Check()
@@ -20,7 +25,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Check : ContentControl, IText, ICheck
+    public partial class Check : ContentControl, IFont, ICheck
     {
         public Check() : base ("CheckBox")
         {
