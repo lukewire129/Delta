@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContentControlChildrenTest"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Project", "src\Delta.Template\Template.Project\Template.Project.csproj", "{741DD60B-D738-4D7A-B7FC-E9E9279998CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorderTest", "BorderTest\BorderTest.csproj", "{15AE229C-8729-4F81-9DDB-28A18171C80A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorderTest", "samples\BorderTest\BorderTest.csproj", "{15AE229C-8729-4F81-9DDB-28A18171C80A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +74,7 @@ Global
 		{22013BD4-9CD1-4C3A-985E-A35CCBBBDA84} = {E3D23626-57FC-497B-BECB-678708C21BF0}
 		{B8DDCBD6-F7C4-4C38-B433-C0F18FB0C513} = {E3D23626-57FC-497B-BECB-678708C21BF0}
 		{727FE581-AA80-44F5-B8EF-39E92DA28391} = {E3D23626-57FC-497B-BECB-678708C21BF0}
+		{15AE229C-8729-4F81-9DDB-28A18171C80A} = {E3D23626-57FC-497B-BECB-678708C21BF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60E634DF-C48E-4831-AB77-BDA337A7DF2C}
