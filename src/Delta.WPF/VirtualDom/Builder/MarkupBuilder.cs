@@ -12,7 +12,11 @@ namespace Delta.WPF
             Type elementType;            
             elementType = Type.GetType ($"System.Windows.Controls.{node.Type}, PresentationFramework");
             if (elementType == null)
-                throw new InvalidOperationException ($"Unknown element type: {node.Type}");
+            {
+                elementType = Type.GetType ($"System.Windows.Shapes.{node.Type}, PresentationFramework");
+                if (elementType == null)
+                    throw new InvalidOperationException ($"Unknown element type: {node.Type}");
+            }
 
             var element = (FrameworkElement)Activator.CreateInstance (elementType);
             element.SetUniqueId (node.Id); // 고유 ID 설정

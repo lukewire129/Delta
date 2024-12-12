@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -51,9 +50,9 @@ namespace Delta.WPF
                 Uri imageUri;
 
                 // 경로가 절대경로인지 상대경로인지 판단
-                if (Path.IsPathRooted (path)) // 절대경로
+                if (System.IO.Path.IsPathRooted (path)) // 절대경로
                 {
-                    if (!File.Exists (path)) // 파일 존재 확인
+                    if (!System.IO.File.Exists (path)) // 파일 존재 확인
                     {
                         throw new Exception ("존재하지 않는 경로의 파일입니다.");
                     }

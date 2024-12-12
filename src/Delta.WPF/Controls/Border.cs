@@ -41,7 +41,7 @@ namespace Delta.WPF
             return node;
         }
 
-        public static T CornerRadius<T>(this T node, double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0) where T : IElement
+        public static T CornerRadius<T>(this T node, double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0) where T : IBorder
         {
             node.SetProperty ("CornerRadius", new CornerRadius (left, top, right, bottom));
             return node;
@@ -52,7 +52,7 @@ namespace Delta.WPF
             return node;
         }
 
-        public static T Padding<T>(this T node, double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0) where T : IElement
+        public static T Padding<T>(this T node, double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0) where T : IBorder
         {
             node.SetProperty ("Padding", new Thickness (left, top, right, bottom));
             return node;
