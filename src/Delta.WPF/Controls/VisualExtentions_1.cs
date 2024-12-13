@@ -1,10 +1,27 @@
 ﻿using System.Drawing;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Delta.WPF
 {
     public static partial class VisualExtention
     {
+        public static T Cursor<T>(this T node, Cursor cursor) where T:IElement
+        {
+            node.SetProperty ("Cursor", cursor);
+            return node;
+        }
+        public static T Name<T>(this T node, string name) where T : IElement
+        {
+            node.Name = name;
+            return node;
+        }
+
+        public static T BitmapScalingMode<T>(this T node, System.Windows.Media.BitmapScalingMode value) where T : IElement
+        {
+            node.SetProperty ("RenderOptions.BitmapScalingMode", value);
+            return node;
+        }
         public static T Row<T>(this T node, int value) where T  : IElement
         {
             node.SetProperty ("Grid.Row", value);

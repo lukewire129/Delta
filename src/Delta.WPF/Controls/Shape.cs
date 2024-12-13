@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Media.Effects;
 
 namespace Delta.WPF
@@ -20,17 +21,7 @@ namespace Delta.WPF
             return node;
         }
 
-        public static T Brush<T>(this T node, System.Windows.Media.SolidColorBrush brushes) where T : IShape
-        {
-            node.SetProperty ("Stroke", brushes);
-            if (node.TryGetValue ("StrokeThickness", out var row))
-            {
-                return node;
-            }
-            node.Thickness (1);
-            return node;
-        }
-        public static T Brush<T>(this T node, System.Windows.Media.LinearGradientBrush brushes) where T : IShape
+        public static T Brush<T>(this T node, System.Windows.Media.Brush brushes) where T : IShape
         {
             node.SetProperty ("Stroke", brushes);
             if (node.TryGetValue ("StrokeThickness", out var row))
@@ -64,12 +55,12 @@ namespace Delta.WPF
             node.Thickness (1);
             return node;
         }
-        public static T Fill<T>(this T node, System.Windows.Media.LinearGradientBrush brushes) where T : IShape
+        public static T Fill<T>(this T node, System.Windows.Media.Brush brushes) where T : IShape
         {
             node.SetProperty ("Fill", brushes);
             return node;
         }
-        public static T Fill<T>(this T node, System.Windows.Media.SolidColorBrush brushes) where T : IShape
+        public static T Fill<T>(this T node, Func<System.Windows.Media.Brush> brushes) where T : IShape
         {
             node.SetProperty ("Fill", brushes);
             return node;

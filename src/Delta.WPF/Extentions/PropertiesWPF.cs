@@ -46,6 +46,10 @@ namespace Delta.WPF._archive.Controls.Extentions
             {
                 values["RenderOptions.BitmapScalingMode"] = scalingMode;
             }
+            if (element.TryGetValue ("Cursor", out var cursor))
+            {
+                values["RenderOptions.BitmapScalingMode"] = cursor;
+            }
             return values;
         }
 

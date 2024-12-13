@@ -135,7 +135,6 @@ namespace Delta.WPF
                 System.Reflection.BindingFlags.Instance |
                 System.Reflection.BindingFlags.FlattenHierarchy
             );
-
             if (property != null && property.CanWrite)
             {
                 property.SetValue (targetControl, operation.NewValue);

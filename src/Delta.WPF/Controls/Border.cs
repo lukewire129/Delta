@@ -78,17 +78,7 @@ namespace Delta.WPF
             return node;
         }
 
-        public static T Brush<T>(this T node, System.Windows.Media.SolidColorBrush brushes) where T : IBorder
-        {
-            node.SetProperty ("BorderBrush", brushes);
-            if (node.TryGetValue ("BorderThickness", out var row))
-            {
-                return node;
-            }
-            node.Thickness (1);
-            return node;
-        }
-        public static T Brush<T>(this T node, System.Windows.Media.LinearGradientBrush brushes) where T : IBorder
+        public static T Brush<T>(this T node, System.Windows.Media.Brush brushes) where T : IBorder
         {
             node.SetProperty ("BorderBrush", brushes);
             if (node.TryGetValue ("BorderThickness", out var row))

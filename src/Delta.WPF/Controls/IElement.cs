@@ -9,6 +9,7 @@ namespace Delta.WPF
         string ParentId { get; set; }
         string Id { get; set; }
         string Type { get; set; }
+        string Name { get; set; }
         bool TryGetValue(string propertyName, [MaybeNullWhen (false)] out object value);
         public List<IElement> Children { get; set; }
         Dictionary<string, object> Properties { get; set; }

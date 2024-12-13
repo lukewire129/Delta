@@ -10,6 +10,7 @@ namespace Delta.WPF
         public string ParentId { get; set; } = "0";
         public string Id { get; set; } = "0";
         public string Type { get; set; }
+        public string Name { get; set; } = "";
         public List<IElement> Children { get; set; } = new List<IElement>();
         public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object> ();
 
