@@ -55,6 +55,12 @@ namespace Delta.WPF
             return node;
         }
 
+        public static T Background<T>(this T node, System.Windows.Media.LinearGradientBrush brushes) where T : IElement
+        {
+            node.SetProperty (nameof (Background), brushes);
+            return node;
+        }
+
         public static T Background<T>(this T node, System.Windows.Media.SolidColorBrush brushes) where T : IElement
         {
             node.SetProperty (nameof (Background), brushes);

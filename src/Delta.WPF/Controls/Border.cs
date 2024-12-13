@@ -10,6 +10,10 @@ namespace Delta.WPF
 
     public abstract partial class Component
     {
+        public static IBorder Border()
+        {
+            return new Border ();
+        }
         public static IBorder Border(object o)
         {
             return new Border (o);
@@ -23,6 +27,10 @@ namespace Delta.WPF
 
     public partial class Border : ContentControl, IBorder
     {
+        public Border() : base("Border")
+        {
+            
+        }
         public Border(IElement element) : base ("Border")
         {
             this.Content (element);
@@ -80,6 +88,17 @@ namespace Delta.WPF
             node.Thickness (1);
             return node;
         }
+        public static T Brush<T>(this T node, System.Windows.Media.LinearGradientBrush brushes) where T : IBorder
+        {
+            node.SetProperty ("BorderBrush", brushes);
+            if (node.TryGetValue ("BorderThickness", out var row))
+            {
+                return node;
+            }
+            node.Thickness (1);
+            return node;
+        }
+
         public static T Brush<T>(this T node, Color color) where T : IBorder
         {
             node.SetProperty ("BorderBrush", new System.Windows.Media.SolidColorBrush (ColorHelper.ToSWMColor (color)));

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace Delta.WPF
 {
@@ -8,7 +9,7 @@ namespace Delta.WPF
     }
     public abstract partial class Component
     {
-        public static IShape Path(string path)
+        public static Path Path(string path)
         {
             return new Path (path);
         }

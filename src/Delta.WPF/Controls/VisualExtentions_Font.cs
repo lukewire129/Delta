@@ -14,6 +14,11 @@ namespace Delta.WPF
             node.SetProperty (nameof (FontFamily), content);
             return node;
         }
+        public static T FontColor<T>(this T node, System.Windows.Media.LinearGradientBrush brushes) where T : IFont
+        {
+            node.SetProperty ("Foreground", brushes);
+            return node;
+        }
 
         public static T FontColor<T>(this T node, System.Windows.Media.SolidColorBrush brushes) where T : IFont
         {
