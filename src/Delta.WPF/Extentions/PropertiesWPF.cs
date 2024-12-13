@@ -42,6 +42,10 @@ namespace Delta.WPF._archive.Controls.Extentions
             {
                 values["Canvas.Bottom"] = canvasbottom;
             }
+            if (element.TryGetValue ("RenderOptions.BitmapScalingMode", out var scalingMode))
+            {
+                values["RenderOptions.BitmapScalingMode"] = scalingMode;
+            }
             return values;
         }
 
@@ -95,6 +99,10 @@ namespace Delta.WPF._archive.Controls.Extentions
             if (propertyName == "Canvas.Right")
             {
                 System.Windows.Controls.Canvas.SetRight (element, (double)value);
+            }
+            if (propertyName == "RenderOptions.BitmapScalingMode")
+            {
+                System.Windows.Media.RenderOptions.SetBitmapScalingMode (element, (System.Windows.Media.BitmapScalingMode)value);
             }
             //else
             //{
