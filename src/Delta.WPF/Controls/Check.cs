@@ -25,7 +25,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Check : ContentControl, IFont, ICheck
+    public partial class Check : ContentControl, IFont, ICheck, IButton
     {
         public Check() : base ("CheckBox")
         {

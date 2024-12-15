@@ -21,7 +21,7 @@ namespace Delta.WPF
             return new Radio (element);
         }
     }
-    public partial class Radio : ContentControl, IFont, IRadio
+    public partial class Radio : ContentControl, IFont, IRadio, IButton
     {
         public Radio() : base ("RadioButton")
         {

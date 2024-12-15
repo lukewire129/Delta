@@ -15,7 +15,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Button : ContentControl, IFont
+    public partial class Button : ContentControl, IFont, IButton
     {
         public Button() : base ("Button") { }
         public Button(object o) : base ("Button")

@@ -6,7 +6,7 @@ namespace Delta.WPF
 {
     public static partial class VisualExtention
     {
-        public static T OnClick<T>(this T node, RoutedEventHandler handlerFactory) where T : IVisual
+        public static T OnClick<T>(this T node, RoutedEventHandler handlerFactory) where T : IButton
         {
             node.AddEvent ("Click", handlerFactory);
             return node;
