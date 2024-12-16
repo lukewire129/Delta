@@ -1,0 +1,33 @@
+﻿namespace Delta.WPF
+{
+    public enum Easing
+    {
+        CubicIn,
+        CubicOut,
+        CubicInOut,
+        BounceIn,
+        BounceOut,
+        BounceInOut,
+        CircleIn,
+        CircleOut,
+        CircleInOut,
+        ElasticIn,
+        ElasticOut,
+        ElasticInOut,
+        ExponentialIn,
+        ExponentialOut,
+        ExponentialInOut,
+        QuadraticIn,
+        QuadraticOut,
+        QuadraticInOut,
+        QuarticIn,
+        QuarticOut,
+        QuarticInOut,
+        QuinticIn,
+        QuinticOut,
+        QuinticInOut,
+        SineIn,
+        SineOut,
+        SineInOut,
+    }
+}

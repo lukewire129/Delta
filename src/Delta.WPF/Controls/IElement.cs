@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Media.Animation;
 
 namespace Delta.WPF
 {
@@ -15,8 +16,10 @@ namespace Delta.WPF
         Dictionary<string, object> Properties { get; set; }
         IElement SetProperty(string name, object value);
         public Dictionary<string, Delegate> Events { get; set; }
+        public Dictionary<string, AnimationTimeline> Animations { get; set; }
         bool Equals(object obj);
         public void LoadNodeNumber(string parentId, int myId);
         IElement AddEvent(string eventName, Delegate handler);
+        IElement AddAnimation(string animationName, AnimationTimeline timeline);
     }
 }

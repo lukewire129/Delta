@@ -9,5 +9,7 @@
         ReplaceNode,
         RemoveProperty,
         UpdateProperty,
+        AddAnimation,
+        RemoveAnimation
     }
 }

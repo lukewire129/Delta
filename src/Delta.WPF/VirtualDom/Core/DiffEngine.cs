@@ -1,12 +1,17 @@
-﻿using System;
+﻿using Delta.WPF.VirtualDom.Operation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
+using System.Windows.Media.Imaging;
 
 namespace Delta.WPF
 {
-    public static class DiffEngine
+    public static partial class DiffEngine
     {
         public static List<DiffOperation> Diff(IElement oldNode, IElement newNode)
         {
@@ -19,6 +24,11 @@ namespace Delta.WPF
                 {
                     // 기존 핸들러 제거
                     operations.Add (new RemoveEventOperation (oldNode, oldEvent));
+                }
+                foreach (var oldAnimation in oldNode.Animations)
+                {
+                    // 기존 핸들러 제거
+                    operations.Add (new RemoveAnimationOperation (oldNode, oldAnimation));
                 }
                 operations.Add (new ReplaceNodeOperation (newNode));
                 return operations;
@@ -45,6 +55,47 @@ namespace Delta.WPF
                         operations.Add (new AddEventOperation (oldNode, newEvent));
                     }
                 }
+
+                foreach (var oldEvent in oldNode.Animations)
+                {
+                    if (!newNode.Animations.ContainsKey (oldEvent.Key) ||
+                        newNode.Animations[oldEvent.Key] != oldEvent.Value)
+                    {
+                        // 기존 핸들러 제거
+                        operations.Add (new RemoveAnimationOperation (oldNode, oldEvent));
+                    }
+                }
+
+
+                foreach (var newEvent in newNode.Animations)
+                {
+                    if(oldNode.Properties[newEvent.Key].ToString() == newNode.Properties[newEvent.Key].ToString ())
+                    {
+                        continue;
+                    }
+                    if (!oldNode.Animations.ContainsKey (newEvent.Key) ||
+                        oldNode.Animations[newEvent.Key] != newEvent.Value)
+                    {
+                        var temp = newEvent.Value.GetType ();
+                        if(temp.Name == nameof(DoubleAnimation))
+                        {
+                            var ani = (DoubleAnimation)newEvent.Value;
+                            ani.From = (double)oldNode.Properties[newEvent.Key];
+                        }
+                        if (temp.Name == nameof (ThicknessAnimation))
+                        {
+                            var ani = (ThicknessAnimation)newEvent.Value;
+                            ani.From = (Thickness)oldNode.Properties[newEvent.Key];
+                        }
+                        if (temp.Name == nameof (ColorAnimation))
+                        {
+                            var ani = (ColorAnimation)newEvent.Value;
+                            ani.From = (Color)oldNode.Properties[newEvent.Key];
+                        }
+                        // 새로운 핸들러 추가
+                        operations.Add (new AddAnimationOperation (oldNode, newEvent));
+                    }
+                }
             }
 
             foreach (var property in newNode.Properties)
@@ -55,25 +106,53 @@ namespace Delta.WPF
                     operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                     continue;
                 }
-                if(oldValue.GetType ().BaseType.Name == "Brush")
+
+                if (oldValue.GetType () != property.Value.GetType ())
                 {
-                    if (oldValue.GetType () != property.Value.GetType ())
-                    {
-                        operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
-                    }
-                    else if (oldValue.GetType ().Name == "SolidColorBrush")
+                    operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
+                    continue;
+                }
+
+                if (oldValue.GetType ().BaseType.Name == "Brush")
+                {
+                    if (oldValue.GetType ().Name == "SolidColorBrush")
                     {
                         if (AreBrushesEqual ((System.Windows.Media.SolidColorBrush)oldValue, (System.Windows.Media.SolidColorBrush)property.Value) == false)
                         {
                             operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                         }
                     }
-                    else if (oldValue.GetType ().Name == "LinearGradientBrush")
+                    continue;
+                }
+                if(oldValue.GetType ().BaseType.Name == "GradientBrush")
+                {
+                    if (AreLinearGradientBrushesEqual ((System.Windows.Media.LinearGradientBrush)oldValue, (System.Windows.Media.LinearGradientBrush)property.Value) == false)
                     {
-                        if (AreLinearGradientBrushesEqual ((System.Windows.Media.LinearGradientBrush)oldValue, (System.Windows.Media.LinearGradientBrush)property.Value) == false)
-                        {
-                            operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
-                        }
+                        operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
+                    }
+                    continue;
+                }
+                if(oldValue.GetType().Name == "BitmapImage")
+                {
+                    if(AreBitmapImagesEqual((BitmapImage)oldValue, (BitmapImage)property.Value) == false)
+                    {
+                        operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
+                    }
+                    continue;
+                }
+                if(oldValue.GetType().Name == "StreamGeometry")
+                {
+                   if(oldValue.ToString() != property.Value.ToString())
+                    {
+                        operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
+                    }
+                    continue;
+                }
+                if(oldValue.GetType().Name== "DropShadowEffect")
+                {
+                    if(CompareDropShadowEffects((DropShadowEffect)oldValue, (DropShadowEffect)property.Value) == false)
+                    {
+                         operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                     }
                     continue;
                 }
@@ -94,7 +173,7 @@ namespace Delta.WPF
                         operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                     }
                 }
-                else if (!Equals (oldValue, property.Value) || oldValue != property.Value)
+                else if (!Equals (oldValue, property.Value))
                 {
                     // 일반 값 비교
                     operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
@@ -200,6 +279,41 @@ namespace Delta.WPF
 
             return brushA.StartPoint == brushB.StartPoint &&
                    brushA.EndPoint == brushB.EndPoint;
+        }
+        private static bool AreBitmapImagesEqual(BitmapImage img1, BitmapImage img2)
+        {
+            if (img1 == null || img2 == null)
+                return false;
+
+            // BitmapSource로 변환
+            var bitmap1 = new FormatConvertedBitmap (img1, PixelFormats.Bgra32, null, 0);
+            var bitmap2 = new FormatConvertedBitmap (img2, PixelFormats.Bgra32, null, 0);
+
+            // 크기 비교
+            if (bitmap1.PixelWidth != bitmap2.PixelWidth || bitmap1.PixelHeight != bitmap2.PixelHeight)
+                return false;
+
+            // 픽셀 데이터 가져오기
+            var buffer1 = new byte[bitmap1.PixelWidth * bitmap1.PixelHeight * 4];
+            var buffer2 = new byte[bitmap2.PixelWidth * bitmap2.PixelHeight * 4];
+
+            bitmap1.CopyPixels (buffer1, bitmap1.PixelWidth * 4, 0);
+            bitmap2.CopyPixels (buffer2, bitmap2.PixelWidth * 4, 0);
+
+            // 바이트 배열 비교
+            return buffer1.SequenceEqual (buffer2);
+        }
+        private static bool CompareDropShadowEffects(DropShadowEffect effect1, DropShadowEffect effect2)
+        {
+            if (effect1 == null || effect2 == null)
+                return false;
+
+            return effect1.Color == effect2.Color &&
+                   effect1.BlurRadius == effect2.BlurRadius &&
+                   effect1.ShadowDepth == effect2.ShadowDepth &&
+                   effect1.Direction == effect2.Direction &&
+                   effect1.Opacity == effect2.Opacity &&
+                   effect1.RenderingBias == effect2.RenderingBias;
         }
     }
 }

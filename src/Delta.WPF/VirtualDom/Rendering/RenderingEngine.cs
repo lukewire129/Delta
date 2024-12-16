@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Delta.WPF.VirtualDom.Operation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Xml.Linq;
-using Delta.WPF._archive.Controls.Extentions;
+using System.Windows.Media;
 namespace Delta.WPF
 {
     public static class RenderingEngine
@@ -33,9 +33,14 @@ namespace Delta.WPF
                     case RemoveEventOperation removeEvent:
                         RemoveHandler (root, removeEvent);
                         break;
-
                     case AddEventOperation addEvent:
                         AddHandler (root, addEvent);
+                        break;
+                    case AddAnimationOperation addAnimation:
+                        AddAnimation (root, addAnimation);
+                        break;
+                    case RemoveAnimationOperation removeAnimation:
+                        RemoveAnimation (root, removeAnimation);
                         break;
                     default:
                         throw new InvalidOperationException ($"Unknown operation type: {operation.GetType ().Name}");
@@ -76,6 +81,83 @@ namespace Delta.WPF
                 eventInfo.AddEventHandler (targetControl, operation.Event.Value);
             }
         }
+
+        private static void AddAnimation(FrameworkElement root, AddAnimationOperation operation)
+        {
+            var targetControl = FindControlById (root, operation.NewNode.Id);
+
+            if (targetControl == null)
+            {
+                Console.WriteLine ($"Control with ID '{operation.NewNode.Id}' not found.");
+                return;
+            }
+
+            var dependencyProperty = AnimationMapper.GetDependencyProperty (operation.Animation.Key);
+
+            if (dependencyProperty != null)
+            {
+                // Rotate 처리: RenderTransform이 설정되어 있는지 확인
+                if (operation.Animation.Key == "Rotate")
+                {
+                    if (!(targetControl.RenderTransform is RotateTransform rotateTransform))
+                    {
+                        rotateTransform = new RotateTransform ();
+                        targetControl.RenderTransform = rotateTransform;
+
+                        // 중심 축을 설정 (기본적으로 중심을 기준으로 회전)
+                        targetControl.RenderTransformOrigin = new Point (0.5, 0.5);
+                    }
+
+                    // RotateTransform의 애니메이션 설정
+                    rotateTransform.BeginAnimation (RotateTransform.AngleProperty, operation.Animation.Value);
+                }
+                else
+                {
+                    var aaa = operation.Animation.Value.GetType ();
+                    // 일반 속성의 애니메이션 설정
+                    targetControl.BeginAnimation (dependencyProperty, operation.Animation.Value);                    
+                }
+            }
+            else
+            {
+                throw new NotSupportedException ($"The property '{operation.Animation.Key}' is not supported for animation.");
+            }
+        }
+
+        private static void RemoveAnimation(FrameworkElement root, RemoveAnimationOperation operation)
+        {
+            var targetControl = FindControlById (root, operation.NewNode.Id);
+
+            if (targetControl == null)
+            {
+                Console.WriteLine ($"Control with ID '{operation.NewNode.Id}' not found.");
+                return;
+            }
+            var dependencyProperty = AnimationMapper.GetDependencyProperty (operation.Animation.Key);
+
+            if (dependencyProperty != null)
+            {
+                // Rotate 처리: RenderTransform의 애니메이션 제거
+                if (operation.Animation.Key == "Rotate")
+                {
+                    if (targetControl.RenderTransform is RotateTransform rotateTransform)
+                    {
+                        // RotateTransform의 애니메이션 제거
+                        rotateTransform.BeginAnimation (RotateTransform.AngleProperty, null);
+                    }
+                }
+                else
+                {
+                    // 일반 속성의 애니메이션 제거
+                    targetControl.BeginAnimation (dependencyProperty, null);
+                }
+            }
+            else
+            {
+                throw new NotSupportedException ($"The property '{operation.Animation.Key}' is not supported for animation.");
+            }
+        }
+
         private static void ReplaceNode(FrameworkElement root, ReplaceNodeOperation operation)
         {
             var targetControl = FindControlById (root, operation.Node.ParentId.ToString());

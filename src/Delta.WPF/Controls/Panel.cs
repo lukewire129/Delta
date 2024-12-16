@@ -1,5 +1,4 @@
-﻿using Delta.WPF._archive.Controls.Extentions;
-namespace Delta.WPF
+﻿namespace Delta.WPF
 {
     public class Panel : Visual
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using Delta.WPF._archive.Controls.Extentions;
+using System.Windows.Media;
 namespace Delta.WPF
 {
     public static class MarkupBuilder
@@ -62,6 +62,36 @@ namespace Delta.WPF
                     eventInfo.AddEventHandler (element, evt.Value);
                 }
             }
+
+            //// Bind Animations
+            //foreach (var evt in node.Animations)
+            //{
+            //    var dependencyProperty = AnimationMapper.GetDependencyProperty (evt.Key);
+
+            //    if (dependencyProperty != null)
+            //    {
+            //        // Rotate 처리: RenderTransform이 설정되어 있는지 확인
+            //        if (evt.Key == "Rotate")
+            //        {
+            //            if (!(element.RenderTransform is RotateTransform rotateTransform))
+            //            {
+            //                rotateTransform = new RotateTransform ();
+            //                element.RenderTransform = rotateTransform;
+
+            //                // 중심 축을 설정 (기본적으로 중심을 기준으로 회전)
+            //                element.RenderTransformOrigin = new Point (0.5, 0.5);
+            //            }
+
+            //            // RotateTransform의 애니메이션 설정
+            //            rotateTransform.BeginAnimation (RotateTransform.AngleProperty, evt.Value);
+            //        }
+            //        else
+            //        {
+            //            // 일반 속성의 애니메이션 설정
+            //            element.BeginAnimation (dependencyProperty, evt.Value);
+            //        }
+            //    }
+            //}
 
             // Process children and Grid.Row/Grid.Column properties // Component인 경우엔 Grid로
             if (node.Children.Count > 0)

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Delta.WPF._archive.Controls.Extentions
+namespace Delta.WPF
 {
     public static class AttachedPropertyExtensions
     {

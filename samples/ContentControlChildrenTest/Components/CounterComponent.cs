@@ -29,30 +29,44 @@ namespace ContentControlChildrenTest.Components
             var (isHover, setIsHover) = UseState (false);
             var (isToggle, setIsToggle) = UseState (true);
             return Grid (
-                     Border ()
-                        .Background ("#00070E")
-                        .Brush ("#34291E")
-                        .Margin (left: 10),
+                        Border ()
+                            .Background ("#00070E")
+                            .Brush ("#34291E")
+                            .Margin (left: 10),
 
-                     Img ($"Resources/logo.png")
-                        .Start ()
-                        .Height (38)
-                        .BitmapScalingMode (System.Windows.Media.BitmapScalingMode.Fant),
+                        Img ($"Resources/logo.png")
+                            .Start ()
+                            .Height (38)
+                            .BitmapScalingMode (System.Windows.Media.BitmapScalingMode.Fant),
 
-                     Border ()
-                        .Background ("#1E2328")
-                        .Brush ("#09343D")
-                        .Thickness (2)
-                        .Margin (50, 4, 4, 4),
+                        Border ()
+                            .Background ("#1E2328")
+                            .Brush ("#09343D")
+                            .Thickness (2)
+                            .Margin (50, 4, 4, 4),
 
-                     isToggle? ToggleOnPath(isHover) : ToggleOffPath ()
+                        isToggle? ToggleOnPath(isHover) : ToggleOffPath (),
+
+                        Grid(
+                            Text("Play")
+                                .FontSize(15)
+                                .FontWeight(FontWeights.Bold)
+                                .Center()
+                                .FontColor("#FFFFFF")
+                                .Margin(30, isToggle ? 0 : 100)
+                                .Transitions("Margin", 500, Easing.CubicInOut),
+                            Text("Stop")
+                                .FontSize (15)
+                                .FontWeight(FontWeights.Bold)
+                                .Center ()
+                                .FontColor ("#3C3C41")
+                                .Margin (30, bottom: isToggle? 100 : 0)
+                                .Transitions ("Margin", 500, Easing.CubicInOut)
+                        )
                    )
                    .OnHover ((s, e) =>
                    {
-                       bool newIsHover = e.RoutedEvent == UIElement.MouseEnterEvent;
-
-                       if (isHover != newIsHover)
-                           setIsHover (newIsHover);
+                        setIsHover (e.RoutedEvent == UIElement.MouseEnterEvent);
                    })
                    .OnClick ((s, e) =>
                    {

@@ -65,7 +65,6 @@ namespace Delta.WPF
             node.SetProperty (nameof (Margin), new Thickness (value, value, value, value));
             return node;
         }
-
         public static T Margin<T>(this T node, double left = 0.0, double top = 0.0, double right = 0.0, double bottom = 0.0) where T : IElement
         {
             node.SetProperty (nameof (Margin), new Thickness(left, top, right, bottom));

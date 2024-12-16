@@ -1,9 +1,16 @@
 ﻿using System.Drawing;
+using System.Windows;
 
 namespace Delta.WPF
 {
     public static partial class VisualExtention
     {
+        public static T FontWeight<T>(this T node, FontWeight weight) where T : IFont
+        {
+            node.SetProperty (nameof (FontWeight), weight);
+            return node;
+        }
+
         public static T FontSize<T>(this T node, double size) where T : IFont
         {
             node.SetProperty (nameof (FontSize), size);
