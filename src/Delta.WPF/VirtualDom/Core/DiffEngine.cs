@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Delta.WPF
 {
@@ -54,6 +55,29 @@ namespace Delta.WPF
                     operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                     continue;
                 }
+                if(oldValue.GetType ().BaseType.Name == "Brush")
+                {
+                    if (oldValue.GetType () != property.Value.GetType ())
+                    {
+                        operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
+                    }
+                    else if (oldValue.GetType ().Name == "SolidColorBrush")
+                    {
+                        if (AreBrushesEqual ((System.Windows.Media.SolidColorBrush)oldValue, (System.Windows.Media.SolidColorBrush)property.Value) == false)
+                        {
+                            operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
+                        }
+                    }
+                    else if (oldValue.GetType ().Name == "LinearGradientBrush")
+                    {
+                        if (AreLinearGradientBrushesEqual ((System.Windows.Media.LinearGradientBrush)oldValue, (System.Windows.Media.LinearGradientBrush)property.Value) == false)
+                        {
+                            operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
+                        }
+                    }
+                    continue;
+                }
+
 
                 // RowDefinitions 또는 ColumnDefinitions 비교
                 if (property.Value is List<RowDefinition> newRowDefs && oldValue is List<RowDefinition> oldRowDefs)
@@ -70,7 +94,7 @@ namespace Delta.WPF
                         operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
                     }
                 }
-                else if (!Equals (oldValue, property.Value))
+                else if (!Equals (oldValue, property.Value) || oldValue != property.Value)
                 {
                     // 일반 값 비교
                     operations.Add (new UpdatePropertyOperation (oldNode.Id, newNode.Id, property.Key, property.Value));
@@ -147,6 +171,35 @@ namespace Delta.WPF
             }
 
             return true;
+        }
+        private static bool AreBrushesEqual(SolidColorBrush brushA, SolidColorBrush brushB)
+        {
+            if (brushA == null || brushB == null)
+                return false;
+
+            return brushA.Color == brushB.Color && brushA.Opacity == brushB.Opacity;
+        }
+
+        private static bool AreGradientBrushesEqual(GradientBrush brushA, GradientBrush brushB)
+        {
+            if (brushA == null || brushB == null)
+                return false;
+
+            return brushA.GradientStops.Count == brushB.GradientStops.Count &&
+                   brushA.ColorInterpolationMode == brushB.ColorInterpolationMode &&
+                   brushA.MappingMode == brushB.MappingMode &&
+                   brushA.SpreadMethod == brushB.SpreadMethod;
+        }
+
+        private static bool AreLinearGradientBrushesEqual(LinearGradientBrush brushA, LinearGradientBrush brushB)
+        {
+            if(!AreGradientBrushesEqual(brushA, brushB))
+            {
+                return false;
+            }
+
+            return brushA.StartPoint == brushB.StartPoint &&
+                   brushA.EndPoint == brushB.EndPoint;
         }
     }
 }
