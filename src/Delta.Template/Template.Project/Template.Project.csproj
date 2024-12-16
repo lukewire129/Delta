@@ -9,6 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DeltaMVU" Version="0.0.*" />
+    <PackageReference Include="DeltaMVU" Version="0.1.*" />
   </ItemGroup>
 </Project>
