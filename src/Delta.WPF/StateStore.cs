@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Delta
+namespace Delta.WPF
 {
     public class StateStore
     {
