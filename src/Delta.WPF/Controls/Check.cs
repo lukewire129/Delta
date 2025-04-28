@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Delta.WPF
 {
@@ -25,7 +27,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Check : ContentControl, IFont, ICheck, IButton
+    public partial class Check : ContentControl, ICheck, IButton
     {
         public Check() : base ("CheckBox")
         {
@@ -42,12 +44,6 @@ namespace Delta.WPF
 
     public static partial class CheckVisualExtention
     {
-        public static T OnChanged<T>(this T node, RoutedEventHandler handlerFactory) where T : ICheck
-        {
-            node.AddEvent ("Checked", handlerFactory);
-            node.AddEvent ("Unchecked", handlerFactory);
-
-            return node;
-        }
+        
     }
 }

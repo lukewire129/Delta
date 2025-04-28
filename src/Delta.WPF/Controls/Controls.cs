@@ -15,7 +15,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Button : ContentControl, IFont, IButton
+    public partial class Button : ContentControl, IButton
     {
         public Button() : base ("Button") { }
         public Button(object o) : base ("Button")
@@ -61,7 +61,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Text : Visual, IFont
+    public partial class Text : Visual
     {
         public Text() : base ("TextBlock") { }
         public Text(string o) : base ("TextBlock")
@@ -70,7 +70,7 @@ namespace Delta.WPF
         }
     }
 
-    public partial class Input : Visual, IFont, IInput
+    public partial class Input : Visual, IInput
     {
         public Input() : base ("TextBox")
         {

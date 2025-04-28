@@ -21,7 +21,7 @@ namespace Delta.WPF
             return new Radio (element);
         }
     }
-    public partial class Radio : ContentControl, IFont, IRadio, IButton
+    public partial class Radio : ContentControl, IRadio, IButton, ICheck
     {
         public Radio() : base ("RadioButton")
         {
@@ -38,13 +38,6 @@ namespace Delta.WPF
 
     public static partial class RadioVisualExtention
     {
-        public static T OnChanged<T>(this T node, RoutedEventHandler handlerFactory) where T : IRadio
-        {
-            node.AddEvent ("Checked", handlerFactory);
-            node.AddEvent ("Unchecked", handlerFactory);
-
-            return node;
-        }
         public static T Group<T>(this T node, string groupName) where T : IRadio
         {
             node.SetProperty ("GroupName", groupName);

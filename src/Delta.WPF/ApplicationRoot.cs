@@ -55,7 +55,6 @@ namespace Delta.WPF
                 Debug.WriteLine ("[Rebuild] Resetting _stateIndex to 0.");
                 StateIndexInitialize?.Invoke (this, EventArgs.Empty);
                 var newVisualNode = _rootComponent.Render ();
-
                
                 Debug.WriteLine ("[Rebuild] Render completed. New VisualNode created.");
                 var diffOperations = DiffEngine.Diff (_currentVisualNode, newVisualNode);

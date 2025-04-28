@@ -11,10 +11,6 @@ namespace Delta.WPF
     {
 
     }
-
-    public interface IFont : IVisual
-    {
-    }
     public interface IButton : IVisual
     {
     }

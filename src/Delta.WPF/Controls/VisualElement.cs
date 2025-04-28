@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Input;
 
 namespace Delta.WPF
 {
@@ -24,16 +23,6 @@ namespace Delta.WPF
                 hash = (hash * 397) ^ child.GetHashCode ();
             }
             return hash;
-        }
-    }
-
-
-    public static partial class VisualExtentions
-    {
-        public static T OnClick<T>(this T node, MouseButtonEventHandler handlerFactory) where T : IVisual
-        {
-            node.AddEvent ("MouseLeftButtonDown", handlerFactory);
-            return node;
         }
     }
 
