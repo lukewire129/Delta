@@ -1,6 +1,5 @@
 ﻿using Delta.WPF;
 using System.Drawing;
-using Base = System.Windows.Controls;
 
 namespace GridTest.Components
 {
@@ -47,86 +46,49 @@ namespace GridTest.Components
                             )
                             .Row (2),
 
-                           !check3 ? new CounterComponent1 ().Row (3) :
-                                     new CounterComponent2 ().Row (3),
+                           //!check3 ? new CounterComponent1 ().Row (3) :
+                           //          new CounterComponent2 ().Row (3),
 
-                            //Grid(
-                            //    Rows(Auto, Auto),
-                            //          Text ($"TextChanged : {text}")
-                            //                 .FontSize (20)
-                            //                 .FontColor (Color.Red)
-                            //                 .Row (0),
+                            Grid (
+                                Rows (Auto, Auto),
+                                     Text ($"TextChanged : {text}")
+                                        .FontSize (20)
+                                        .FontColor (Color.Red)
+                                        .Row (0),
 
-                            //         Input()
-                            //             .OnTextChanged ((s, e) =>
-                            //             {
-                            //                 if (s is TextBox textBox)
-                            //                 {
-                            //                     setText (textBox.Text);
-                            //                     //Console.WriteLine (textBox.Text);
-                            //                 }
-                            //             })
-                            //             .FontColor(Color.Blue)
-                            //             .Size(100, 50)
-                            //             .Row(1)
-                            //    )
-                            //    .Row(4),
+                                     Input ()
+                                         .OnTextChanged (s => setText (s))
+                                         .FontColor (Color.Blue)
+                                         .Size (100, 50)
+                                         .Row (1)
+                                )
+                                .Row (4),
 
-                            // Grid (
-                            //     Rows (Auto, Auto),
-                            //         Text ($"CheckBox : {check}")
-                            //             .FontSize (20)
-                            //             .FontColor (Color.Red)
-                            //             .Row (0),
+                             Grid (
+                                 Rows (Auto, Auto),
+                                     Text ($"CheckBox : {check}")
+                                         .FontSize (20)
+                                         .FontColor (Color.Red)
+                                         .Row (0),
 
-                            //         Check ()
-                            //             .OnChanged ((s, e) =>
-                            //             {
-                            //                 if (s is CheckBox checkBox)
-                            //                 {
-                            //                     setCheck (checkBox.IsChecked.Value);
-                            //                 }
-                            //             })
-                            //             .FontColor (Color.Blue)
-                            //             .Size (100, 50)
-                            //             .Row (1)
-                            //    )
-                            //    .Row (5),
+                                     Check ()
+                                         .OnCheckChanged (s => setCheck(s))
+                                         .FontColor (Color.Blue)
+                                         .Size (100, 50)
+                                         .Row (1)
+                                )
+                                .Row (5),
                             HStack (
                                     VStack (
-                                         Text ($"RadioButton 1 : {check1}")
-                                            .FontSize (20)
-                                            .FontColor (Color.Red),
-
-                                         Text ($"RadioButton 2 : {check3}")
-                                            .FontSize (20)
-                                            .FontColor (Color.Red)
-
-                                    ),
-
-                                    VStack (
-                                        Radio ()
-                                            .OnChanged ((s, e) =>
-                                            {
-                                                if (s is Base.RadioButton radio)
-                                                {
-                                                    setCheck1 (radio.IsChecked.Value);
-                                                }
-                                            })
+                                        Radio ($"RadioButton 1 : {check1}")
+                                            .OnCheckChanged ((s) => setCheck1 (s))
                                             .FontColor (Color.Blue)
-                                            .FontSize(10)
-                                            .Size (100, 50),
+                                            .FontSize (10),
 
-                                        Radio ()
-                                            .OnChanged ((s, e) =>
-                                            {
-                                                if (s is Base.RadioButton radio)
-                                                {
-                                                    setCheck3 (radio.IsChecked.Value);
-                                                }
-                                            })
+                                        Radio ($"RadioButton 2 : {check3}")
+                                            .OnCheckChanged ((s) => setCheck3 (s))
+                                            .FontSize (10)
                                             .FontColor (Color.Blue)
-                                            .Size (100, 50)
                                     )
                                )
                                .Row (6)
